@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:tappal_app/common/custom_colors.dart';
 import 'package:tappal_app/common/custom_dimens.dart';
 
-class PrimaryButton extends StatelessWidget {
-  final String text;
+class SelectableButton extends StatelessWidget {
   final VoidCallback onPressed;
-  
+  final String text;
+  final bool isSelected;
 
-  const PrimaryButton(
-    this.onPressed,
-    this.text, {
-     // Initial value set to true
+  const SelectableButton({
     Key? key,
+    required this.onPressed,
+    required this.text,
+    required this.isSelected,
   }) : super(key: key);
 
   @override
@@ -19,18 +19,15 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
+         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(CustomDimens.primaryBtnRadius),
         ),
-        backgroundColor: 
-             CustomColors.primaryColor
-            // Use primary color if isSelected is true
+        backgroundColor: isSelected ? CustomColors.primaryColor : Colors.grey,
       ),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Text(
-          text,
-          style: TextStyle(
+        child: Text(text,
+         style: TextStyle(
             fontSize: CustomDimens.primaryBtnText,
             color: 
                  CustomColors.primaryBtnText

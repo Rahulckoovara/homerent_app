@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:tappal_app/common/custom_colors.dart';
-import 'package:tappal_app/common/custom_dimens.dart';
+import 'package:tappal_app/config/custom_dia.dart';
 
 class Property extends StatelessWidget {
   final String imagePath;

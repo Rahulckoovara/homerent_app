@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tappal_app/common/custom_dimens.dart';
+import 'package:tappal_app/config/custom_dia.dart';
 
 class FilterButton extends StatelessWidget {
   final IconData icon;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tappal_app/common/custom_colors.dart';
-import 'package:tappal_app/common/custom_dimens.dart';
+import 'package:tappal_app/config/custom_colors.dart';
+import 'package:tappal_app/config/custom_dia.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;

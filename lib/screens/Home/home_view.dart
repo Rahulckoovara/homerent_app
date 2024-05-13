@@ -62,7 +62,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tappal_app/common/custom_colors.dart';
-import 'package:tappal_app/common/custom_dimens.dart';
+import 'package:tappal_app/config/custom_dia.dart';
 import 'package:tappal_app/widgets/Property_list.dart';
 import 'package:tappal_app/widgets/Selectable_button.dart';
 import 'package:tappal_app/widgets/filter_button.dart';

@@ -108,8 +108,8 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              TextField(
-                decoration: InputDecoration(
+                  TextField(
+                  decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Search',
                   prefixIcon: Icon(Icons.search),
@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                   contentPadding: const EdgeInsets.all(12.0),
                   hintText: 'Search for your dream property',
                   hintStyle: TextStyle(
-                    color: Colors.grey,
+                  color: Colors.grey,
                   ),
                 ),
               ),
@@ -172,7 +172,8 @@ class _HomePageState extends State<HomePage> {
                         bedroom: '3',
                         livingRoom: '2',
                         bathroom: '2',
-                        price: '3000'),
+                        price: '3000',
+                        onTap: (){},),
                     SizedBox(width: CustomDimens.spacerH),
                     Property(
                         imagePath: 'assets/flat2.jpg',
@@ -181,7 +182,8 @@ class _HomePageState extends State<HomePage> {
                         bedroom: '3',
                         livingRoom: '2',
                         bathroom: '2',
-                        price: '3000'),
+                        price: '3000',
+                        onTap: (){}),
                   ],
                 ),
               ),

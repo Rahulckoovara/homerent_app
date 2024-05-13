@@ -12,6 +12,7 @@ class Property extends StatelessWidget {
   final String livingRoom;
   final String bathroom;
   final String price;
+  final VoidCallback onTap;
   const Property({super.key,
    required this.imagePath,
     required this.flatName, 
@@ -19,14 +20,12 @@ class Property extends StatelessWidget {
     required this.bedroom,
     required this.livingRoom,
     required this.bathroom,
-    required this.price});
+    required this.price, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        print('tapped');
-      },
+      onTap: onTap,
       child: Container(
         height: 320,
         width: MediaQuery.of(context).size.width*0.6,

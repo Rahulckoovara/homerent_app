@@ -69,6 +69,7 @@ import 'package:tappal_app/widgets/Property_list.dart';
 import 'package:tappal_app/widgets/Selectable_button.dart';
 import 'package:tappal_app/widgets/Text_input.dart';
 import 'package:tappal_app/widgets/filter_button.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -80,17 +81,26 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List<String> buttonValues = ['All', 'Homes', 'PG'];
+   final List<String> imgList = [
+    'https://th.bing.com/th?id=OIP.EJVVN8C6-3mc5bhO0IXqhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
+    'https://th.bing.com/th?id=OIP.iE7mcw3w2aFFDhXP9A1lggHaE8&w=305&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
+    'https://th.bing.com/th?id=OIP.ckg9D6vQqA2BS52933zcLwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
+    
+  ];
+
+  int _current = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        //backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.grey[200],
         body: Padding(
           padding: EdgeInsets.all(CustomDimens.commonPadding),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              
               RichText(
                 text: const TextSpan(
                   children: [
@@ -111,20 +121,60 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-                  TextField(
-                  decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Search',
-                  prefixIcon: Icon(Icons.search),
-                  fillColor: Colors.white,
-                  filled: true,
-                  contentPadding: const EdgeInsets.all(12.0),
-                  hintText: 'Search for your dream property',
-                  hintStyle: TextStyle(
-                  color: Colors.grey,
-                  ),
-                ),
+              CarouselSlider(
+            options: CarouselOptions(
+              height: 150.0,
+              enlargeCenterPage: true,
+              autoPlay: true,
+              aspectRatio: 16 / 9,
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enableInfiniteScroll: true,
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              viewportFraction: 0.8,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  _current = index;
+                });
+              },
+            ),
+            items: imgList.map((item) => Container(
+              child: Center(
+                child: Image.network(item, fit: BoxFit.cover, width: 800)
               ),
+            )).toList(),
+          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: imgList.map((url) {
+          //     int index = imgList.indexOf(url);
+          //     return Container(
+          //       width: 8.0,
+          //       height: 8.0,
+          //       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+          //       decoration: BoxDecoration(
+          //         shape: BoxShape.circle,
+          //         color: _current == index
+          //             ? Color.fromRGBO(0, 0, 0, 0.9)
+          //             : Color.fromRGBO(0, 0, 0, 0.4),
+          //       ),
+          //     );
+          //   }).toList(),
+          // ),
+              
+              //     TextField(
+              //     decoration: InputDecoration(
+              //     border: OutlineInputBorder(),
+              //     labelText: 'Search',
+              //     prefixIcon: Icon(Icons.search),
+              //     fillColor: Colors.white,
+              //     filled: true,
+              //     contentPadding: const EdgeInsets.all(12.0),
+              //     hintText: 'Search for your dream property',
+              //     hintStyle: TextStyle(
+              //     color: Colors.grey,
+              //     ),
+              //   ),
+              // ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

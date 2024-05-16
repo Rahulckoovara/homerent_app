@@ -58,12 +58,12 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tappal_app/common/custom_colors.dart';
+import 'package:tappal_app/config/custom_colors.dart';
+import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
-import 'package:tappal_app/screens/filter/filter_view.dart';
+import 'package:tappal_app/screens/home_details/home_details_view.dart';
 import 'package:tappal_app/widgets/Property_list.dart';
 import 'package:tappal_app/widgets/Selectable_button.dart';
 import 'package:tappal_app/widgets/Text_input.dart';
@@ -98,19 +98,32 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
-                          //color: Colors.black
+                          color: Colors.black
                           ),
                     ),
                     TextSpan(
                       text: '\nproperty',
                       style: TextStyle(fontSize: 30,
-                      // color: Colors.black
+                       color: Colors.black
                        ),
                     ),
                   ],
                 ),
               ),
-                  const TextInput('', 'Search',null,false , null),
+                  TextField(
+                  decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Search',
+                  prefixIcon: Icon(Icons.search),
+                  fillColor: Colors.white,
+                  filled: true,
+                  contentPadding: const EdgeInsets.all(12.0),
+                  hintText: 'Search for your dream property',
+                  hintStyle: TextStyle(
+                  color: Colors.grey,
+                  ),
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -125,10 +138,7 @@ class _HomePageState extends State<HomePage> {
                       isSelected: _selectedIndex == i,
                     ),
                   FilterButton(
-                    onPressed: () {
-
-                      Get.to(const FilterPage());
-                    },
+                    onPressed: () {},
                     icon: Icons.filter_alt_outlined,
                   )
                 ],
@@ -140,7 +150,7 @@ class _HomePageState extends State<HomePage> {
               //     fontWeight: FontWeight.bold,
               //   ),
               // ),
-              const Row(
+              Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -149,7 +159,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Text(
                     'See All',
-                    style: TextStyle(fontSize: 15, color: CustomColors.primarySubText),
+                    style: TextStyle(
+                        fontSize: 15, color: CustomColors.primarySubText),
                   ),
                 ],
               ),
@@ -158,14 +169,17 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   children: [
                     Property(
-                        imagePath: 'assets/flat1.jpg',
-                        flatName: 'Park Avenue Apartment',
-                        address: '84 kozhikode st usa',
-                        bedroom: '3',
-                        livingRoom: '2',
-                        bathroom: '2',
-                        price: '3000',
-                        onTap: (){},),
+                      imagePath: 'assets/flat1.jpg',
+                      flatName: 'Park Avenue Apartment',
+                      address: '84 kozhikode st usa',
+                      bedroom: '3',
+                      livingRoom: '2',
+                      bathroom: '2',
+                      price: '3000',
+                      onTap: () {
+                        Get.to(HomeDetails());
+                      },
+                    ),
                     SizedBox(width: CustomDimens.spacerH),
                     Property(
                         imagePath: 'assets/flat2.jpg',
@@ -175,7 +189,7 @@ class _HomePageState extends State<HomePage> {
                         livingRoom: '2',
                         bathroom: '2',
                         price: '3000',
-                        onTap: (){}),
+                        onTap: () {}),
                   ],
                 ),
               ),
@@ -186,6 +200,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-

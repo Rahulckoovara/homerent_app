@@ -1,7 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/screens/login/login_logic.dart';
 import 'package:tappal_app/widgets/Text_input.dart';
 import 'package:tappal_app/widgets/primary_button.dart';
 
@@ -10,6 +13,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final logic = Get.put(LoginLogic());
+
     return Scaffold(
         body: Stack(children: [
       Positioned(
@@ -83,7 +88,9 @@ class LoginPage extends StatelessWidget {
                     ),
                     Container(
                         width: double.infinity,
-                        child: PrimaryButton(() {}, "LOGIN"))
+                        child: PrimaryButton(() {
+                          logic.goToHome();
+                        }, "LOGIN"))
                   ],
                 ),
               ),

@@ -9,9 +9,8 @@ class FilterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-
-onPressed: onPressed,
-style: IconButton.styleFrom(
+     onPressed: onPressed,
+     style: IconButton.styleFrom(
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(CustomDimens.primaryBtnRadius)
   ),

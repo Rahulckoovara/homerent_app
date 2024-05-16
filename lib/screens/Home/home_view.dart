@@ -161,48 +161,38 @@ class _HomePageState extends State<HomePage> {
           //   }).toList(),
           // ),
               
-              //     TextField(
-              //     decoration: InputDecoration(
-              //     border: OutlineInputBorder(),
-              //     labelText: 'Search',
-              //     prefixIcon: Icon(Icons.search),
-              //     fillColor: Colors.white,
-              //     filled: true,
-              //     contentPadding: const EdgeInsets.all(12.0),
-              //     hintText: 'Search for your dream property',
-              //     hintStyle: TextStyle(
-              //     color: Colors.grey,
-              //     ),
-              //   ),
-              // ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  for (int i = 0; i < buttonValues.length; i++)
-                    SelectableButton(
-                      onPressed: () {
-                        setState(() {
-                          _selectedIndex = i;
-                        });
-                      },
-                      text: buttonValues[i],
-                      isSelected: _selectedIndex == i,
-                    ),
-                  FilterButton(
-                    onPressed: () {
-                      Get.to(FilterPage());
-                    },
-                    icon: Icons.filter_alt_outlined,
-                  )
-                ],
+         
+              Container(
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),
+                color: Colors.grey[300]),
+               
+                //color: Colors.grey[900],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      for (int i = 0; i < buttonValues.length; i++)
+                        SelectableButton(
+                          onPressed: () {
+                            setState(() {
+                              _selectedIndex = i;
+                            });
+                          },
+                          text: buttonValues[i],
+                          isSelected: _selectedIndex == i,
+                        ),
+                      FilterButton(
+                        onPressed: () {
+                          Get.to(FilterPage());
+                        },
+                        icon: Icons.filter_alt_outlined,
+                      )
+                    ],
+                  ),
+                ),
               ),
-              // Text(
-              //   'Selected Value: ${buttonValues[_selectedIndex]}',
-              //   style: TextStyle(
-              //     fontSize: 18,
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              // ),
+              
               Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

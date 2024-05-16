@@ -63,10 +63,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tappal_app/common/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/screens/filter/filter_view.dart';
 import 'package:tappal_app/widgets/Property_list.dart';
 import 'package:tappal_app/widgets/Selectable_button.dart';
+import 'package:tappal_app/widgets/Text_input.dart';
 import 'package:tappal_app/widgets/filter_button.dart';
-import 'package:tappal_app/widgets/primary_button.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -76,15 +77,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0; // Default value for selected button
-
+  int _selectedIndex = 0;
   List<String> buttonValues = ['All', 'Homes', 'PG'];
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 233, 224, 224),
+        //backgroundColor: Colors.grey[200],
         body: Padding(
           padding: EdgeInsets.all(CustomDimens.commonPadding),
           child: Column(
@@ -92,36 +91,26 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   children: [
                     TextSpan(
                       text: 'Find Your dream ',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
-                          color: Colors.black),
+                          //color: Colors.black
+                          ),
                     ),
                     TextSpan(
                       text: '\nproperty',
-                      style: TextStyle(fontSize: 30, color: Colors.black),
+                      style: TextStyle(fontSize: 30,
+                      // color: Colors.black
+                       ),
                     ),
                   ],
                 ),
               ),
-                  TextField(
-                  decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Search',
-                  prefixIcon: Icon(Icons.search),
-                  fillColor: Colors.white,
-                  filled: true,
-                  contentPadding: const EdgeInsets.all(12.0),
-                  hintText: 'Search for your dream property',
-                  hintStyle: TextStyle(
-                  color: Colors.grey,
-                  ),
-                ),
-              ),
+                  const TextInput('', 'Search',null,false , null),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -136,7 +125,10 @@ class _HomePageState extends State<HomePage> {
                       isSelected: _selectedIndex == i,
                     ),
                   FilterButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                      Get.to(const FilterPage());
+                    },
                     icon: Icons.filter_alt_outlined,
                   )
                 ],
@@ -148,7 +140,7 @@ class _HomePageState extends State<HomePage> {
               //     fontWeight: FontWeight.bold,
               //   ),
               // ),
-              Row(
+              const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(

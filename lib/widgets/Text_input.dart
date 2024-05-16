@@ -63,7 +63,7 @@ class TextInput extends StatelessWidget {
             // hintText: hintText,
             icon: icon != null ? Icon(icon) : null,
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30.0),
+                borderRadius: BorderRadius.circular(10.0),
                 borderSide: BorderSide(
                   color: CustomColors.txtfieldBorder,
                   width: CustomDimens.txtinputborderW,

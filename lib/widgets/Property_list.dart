@@ -59,31 +59,34 @@ class Property extends StatelessWidget {
                 ],
               ),
               SizedBox(height: CustomDimens.spacerH ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.bedroom_parent_outlined,
-                      color:CustomColors.primaryIconBg),
-                      Text(bedroom, ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.living_outlined,
-                      color:CustomColors.primaryIconBg),
-                      Text(livingRoom, ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.bathroom_outlined,
-                      color: CustomColors.primaryIconBg),
-                      Text(bathroom, ),
-                    ],
-                  ),
-                ],
+              Padding(
+                padding:  EdgeInsets.only(right: 50.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.bed_outlined,
+                        color:CustomColors.primaryIconBg),
+                        Text(bedroom, ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.chair_outlined,
+                        color:CustomColors.primaryIconBg),
+                        Text(livingRoom, ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(Icons.bathtub_outlined,
+                        color: CustomColors.primaryIconBg),
+                        Text(bathroom, ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: CustomDimens.spacerH ),
               RichText(

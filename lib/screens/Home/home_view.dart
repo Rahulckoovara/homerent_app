@@ -63,6 +63,7 @@ import 'package:get/get.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/screens/filter/filter_view.dart';
 import 'package:tappal_app/screens/home_details/home_details_view.dart';
 import 'package:tappal_app/widgets/Property_list.dart';
 import 'package:tappal_app/widgets/Selectable_button.dart';
@@ -138,7 +139,9 @@ class _HomePageState extends State<HomePage> {
                       isSelected: _selectedIndex == i,
                     ),
                   FilterButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(FilterPage());
+                    },
                     icon: Icons.filter_alt_outlined,
                   )
                 ],

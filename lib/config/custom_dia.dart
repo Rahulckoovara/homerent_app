@@ -7,6 +7,8 @@ class CustomDimens {
   static var primaryBtnH = 48.0;
  
   static var spacerH = 15.0;
+    static var spacer2H = 20.0;
+
   //text input
    static var txtinputLabel = 14.0;
   static var txtinputborderW = 1.0;

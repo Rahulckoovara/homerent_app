@@ -58,11 +58,12 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tappal_app/common/custom_colors.dart';
+import 'package:tappal_app/config/custom_colors.dart';
+import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/screens/home_details/home_details_view.dart';
 import 'package:tappal_app/widgets/Property_list.dart';
 import 'package:tappal_app/widgets/Selectable_button.dart';
 import 'package:tappal_app/widgets/filter_button.dart';
@@ -108,8 +109,8 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-                  TextField(
-                  decoration: InputDecoration(
+              TextField(
+                decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Search',
                   prefixIcon: Icon(Icons.search),
@@ -118,28 +119,31 @@ class _HomePageState extends State<HomePage> {
                   contentPadding: const EdgeInsets.all(12.0),
                   hintText: 'Search for your dream property',
                   hintStyle: TextStyle(
-                  color: Colors.grey,
+                    color: Colors.grey,
                   ),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  for (int i = 0; i < buttonValues.length; i++)
-                    SelectableButton(
-                      onPressed: () {
-                        setState(() {
-                          _selectedIndex = i;
-                        });
-                      },
-                      text: buttonValues[i],
-                      isSelected: _selectedIndex == i,
-                    ),
-                  FilterButton(
-                    onPressed: () {},
-                    icon: Icons.filter_alt_outlined,
-                  )
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    for (int i = 0; i < buttonValues.length; i++)
+                      SelectableButton(
+                        onPressed: () {
+                          setState(() {
+                            _selectedIndex = i;
+                          });
+                        },
+                        text: buttonValues[i],
+                        isSelected: _selectedIndex == i,
+                      ),
+                    FilterButton(
+                      onPressed: () {},
+                      icon: Icons.filter_alt_outlined,
+                    )
+                  ],
+                ),
               ),
               // Text(
               //   'Selected Value: ${buttonValues[_selectedIndex]}',
@@ -149,7 +153,7 @@ class _HomePageState extends State<HomePage> {
               //   ),
               // ),
               Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Properties',
@@ -157,7 +161,8 @@ class _HomePageState extends State<HomePage> {
                   ),
                   Text(
                     'See All',
-                    style: TextStyle(fontSize: 15, color: CustomColors.primarySubText),
+                    style: TextStyle(
+                        fontSize: 15, color: CustomColors.primarySubText),
                   ),
                 ],
               ),
@@ -166,14 +171,17 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   children: [
                     Property(
-                        imagePath: 'assets/flat1.jpg',
-                        flatName: 'Park Avenue Apartment',
-                        address: '84 kozhikode st usa',
-                        bedroom: '3',
-                        livingRoom: '2',
-                        bathroom: '2',
-                        price: '3000',
-                        onTap: (){},),
+                      imagePath: 'assets/flat1.jpg',
+                      flatName: 'Park Avenue Apartment',
+                      address: '84 kozhikode st usa',
+                      bedroom: '3',
+                      livingRoom: '2',
+                      bathroom: '2',
+                      price: '3000',
+                      onTap: () {
+                        Get.to(HomeDetails());
+                      },
+                    ),
                     SizedBox(width: CustomDimens.spacerH),
                     Property(
                         imagePath: 'assets/flat2.jpg',
@@ -183,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                         livingRoom: '2',
                         bathroom: '2',
                         price: '3000',
-                        onTap: (){}),
+                        onTap: () {}),
                   ],
                 ),
               ),
@@ -194,6 +202,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-

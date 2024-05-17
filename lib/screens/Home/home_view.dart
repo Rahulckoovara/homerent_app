@@ -225,7 +225,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(width: CustomDimens.spacerH),
                     Property(
-                        imagePath: 'assets/flat2.jpg',
+                        imagePath: 'assets/flat2.jpg', 
                         flatName: 'Park Avenue Apartment',
                         address: '84 kozhikode st usa',
                         bedroom: '3',

@@ -217,6 +217,7 @@ class _HomePageState extends State<HomePage> {
                       livingRoom: '2',
                       bathroom: '2',
                       price: '3000',
+                      onFavoriteTap: () {},
                       onTap: () {
                         Get.to(Panorama());
                        // Get.to(HomeDetails());
@@ -231,6 +232,7 @@ class _HomePageState extends State<HomePage> {
                         livingRoom: '2',
                         bathroom: '2',
                         price: '3000',
+                        onFavoriteTap: () {},
                         onTap: () {}),
                   ],
                 ),

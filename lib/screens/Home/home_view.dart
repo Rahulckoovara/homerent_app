@@ -1,68 +1,11 @@
-// import 'package:flutter/material.dart';
 
-// class ButtonPage extends StatefulWidget {
-//   @override
-//   _ButtonPageState createState() => _ButtonPageState();
-// }
-
-// class _ButtonPageState extends State<ButtonPage> {
-//   int _selectedIndex = -1; // Default value for no selection
-//   List<String> buttonValues = ['Button 1', 'Button 2', 'Button 3'];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Button Page'),
-//       ),
-//       body: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         crossAxisAlignment: CrossAxisAlignment.stretch,
-//         children: [
-//           Column(
-//             children: buttonValues
-//                 .asMap()
-//                 .entries
-//                 .map(
-//                   (entry) => Padding(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: ElevatedButton(
-//                       onPressed: () {
-//                         setState(() {
-//                           // Update the selected index
-//                           _selectedIndex = entry.key;
-//                         });
-//                       },
-//                       style: ElevatedButton.styleFrom(
-//                         backgroundColor: _selectedIndex == entry.key
-//                             ? Color.fromARGB(255, 4, 85, 92) // Change color of selected button
-//                             : Colors.white,
-//                       ),
-//                       child: Text(entry.value),
-//                     ),
-//                   ),
-//                 )
-//                 .toList(),
-//           ),
-//           SizedBox(height: 20), // Add spacing between buttons and selected value
-//           _selectedIndex != -1
-//               ? Text(
-//                   'Selected Value: ${buttonValues[_selectedIndex]}',
-//                   textAlign: TextAlign.center,
-//                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//                 )
-//               : SizedBox(), // Display nothing if no button is selected
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/config/custom_fonts.dart';
 import 'package:tappal_app/panorama/panorama_view.dart';
 import 'package:tappal_app/screens/filter/filter_view.dart';
 import 'package:tappal_app/screens/home_details/home_details_view.dart';
@@ -108,11 +51,12 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
+                          fontFamily: CustomFont.fontBold,
                           color: Colors.black),
                     ),
                     TextSpan(
                       text: '\nproperty',
-                      style: TextStyle(fontSize: 30, color: Colors.black),
+                      style: TextStyle(fontSize: 30,fontFamily: CustomFont.fontBold, color: Colors.black),
                     ),
                   ],
                 ),
@@ -196,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text(
                     'Properties',
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,fontFamily: CustomFont.fontSemiBold),
                   ),
                   Text(
                     'See All',
@@ -244,3 +188,62 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+// import 'package:flutter/material.dart';
+
+// class ButtonPage extends StatefulWidget {
+//   @override
+//   _ButtonPageState createState() => _ButtonPageState();
+// }
+
+// class _ButtonPageState extends State<ButtonPage> {
+//   int _selectedIndex = -1; // Default value for no selection
+//   List<String> buttonValues = ['Button 1', 'Button 2', 'Button 3'];
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Button Page'),
+//       ),
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         crossAxisAlignment: CrossAxisAlignment.stretch,
+//         children: [
+//           Column(
+//             children: buttonValues
+//                 .asMap()
+//                 .entries
+//                 .map(
+//                   (entry) => Padding(
+//                     padding: const EdgeInsets.all(8.0),
+//                     child: ElevatedButton(
+//                       onPressed: () {
+//                         setState(() {
+//                           // Update the selected index
+//                           _selectedIndex = entry.key;
+//                         });
+//                       },
+//                       style: ElevatedButton.styleFrom(
+//                         backgroundColor: _selectedIndex == entry.key
+//                             ? Color.fromARGB(255, 4, 85, 92) // Change color of selected button
+//                             : Colors.white,
+//                       ),
+//                       child: Text(entry.value),
+//                     ),
+//                   ),
+//                 )
+//                 .toList(),
+//           ),
+//           SizedBox(height: 20), // Add spacing between buttons and selected value
+//           _selectedIndex != -1
+//               ? Text(
+//                   'Selected Value: ${buttonValues[_selectedIndex]}',
+//                   textAlign: TextAlign.center,
+//                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+//                 )
+//               : SizedBox(), // Display nothing if no button is selected
+//         ],
+//       ),
+//     );
+//   }
+// }

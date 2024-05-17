@@ -161,21 +161,23 @@ class _HomePageState extends State<HomePage> {
                       livingRoom: '2',
                       bathroom: '2',
                       price: '3000',
+                      id: 'id1',
                       onFavoriteTap: () {},
                       onTap: () {
                         Get.to(Panorama());
-                       // Get.to(HomeDetails());
+                        // Get.to(HomeDetails());
                       },
                     ),
                     SizedBox(width: CustomDimens.spacerH),
                     Property(
-                        imagePath: 'assets/flat2.jpg', 
+                        imagePath: 'assets/flat2.jpg',
                         flatName: 'Park Avenue Apartment',
                         address: '84 kozhikode st usa',
                         bedroom: '3',
                         livingRoom: '2',
                         bathroom: '2',
                         price: '3000',
+                        id: 'id2',
                         onFavoriteTap: () {},
                         onTap: () {}),
                   ],

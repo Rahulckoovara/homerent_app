@@ -65,9 +65,9 @@ class HomeDetails extends StatelessWidget {
                           TextSpan(
                             text: "₹30000",
                             style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: const Color.fromARGB(255, 0, 0, 0)),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           TextSpan(
                               text: '/Mon',

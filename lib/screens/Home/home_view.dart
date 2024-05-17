@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tappal_app/config/custom_colors.dart';
@@ -36,7 +34,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.grey[200],
         body: Padding(
           padding: EdgeInsets.all(CustomDimens.commonPadding),
           child: Column(
@@ -56,11 +53,15 @@ class _HomePageState extends State<HomePage> {
                     ),
                     TextSpan(
                       text: '\nproperty',
-                      style: TextStyle(fontSize: 30,fontFamily: CustomFont.fontBold, color: Colors.black),
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontFamily: CustomFont.fontBold,
+                          color: Colors.black),
                     ),
                   ],
                 ),
               ),
+
               CarouselSlider(
                 options: CarouselOptions(
                   height: 150.0,
@@ -140,7 +141,10 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text(
                     'Properties',
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,fontFamily: CustomFont.fontSemiBold),
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: CustomFont.fontSemiBold),
                   ),
                   Text(
                     'See All',

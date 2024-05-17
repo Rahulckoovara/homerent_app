@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/config/custom_fonts.dart';
 import 'package:tappal_app/widgets/Selectable_button.dart';
 import 'package:tappal_app/widgets/primary_button.dart';
 
@@ -26,7 +27,7 @@ class _FilterPageState extends State<FilterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Filter'),
+        title: Text('Filter',style: TextStyle(fontFamily: CustomFont.fontSemiBold),),
         centerTitle: true,
         backgroundColor: Colors.grey[200],
       ),
@@ -51,7 +52,7 @@ class _FilterPageState extends State<FilterPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Price Range'),
+                              Text('Price Range',style: TextStyle(fontFamily: CustomFont.fontMedium),),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
@@ -101,7 +102,7 @@ class _FilterPageState extends State<FilterPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Bedrooms'),
+                              Text('Bedrooms',style: TextStyle(fontFamily: CustomFont.fontMedium),),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
@@ -136,7 +137,7 @@ class _FilterPageState extends State<FilterPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Bathrooms'),
+                              Text('Bathrooms',style: TextStyle(fontFamily: CustomFont.fontMedium),),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [

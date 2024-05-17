@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/config/custom_fonts.dart';
 
 class SelectableButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -30,6 +31,7 @@ class SelectableButton extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
+          fontFamily: CustomFont.fontSemiBold,
           fontSize: CustomDimens.primaryBtnText,
           color: CustomColors.primaryBtnText,
         ),

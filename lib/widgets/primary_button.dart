@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/config/custom_fonts.dart';
 
 class PrimaryButton extends StatelessWidget {
   final String text;
@@ -32,6 +33,7 @@ class PrimaryButton extends StatelessWidget {
           text,
           style: TextStyle(
             fontSize: CustomDimens.primaryBtnText,
+            fontFamily: CustomFont.fontMedium,
             color: 
                  CustomColors.primaryBtnText
                 // Use primary text color if isSelected is true

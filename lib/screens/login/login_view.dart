@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/config/custom_fonts.dart';
 import 'package:tappal_app/screens/login/login_logic.dart';
 import 'package:tappal_app/widgets/Text_input.dart';
 import 'package:tappal_app/widgets/primary_button.dart';
@@ -42,11 +43,12 @@ class LoginPage extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 35,
                             fontWeight: FontWeight.bold,
+                            fontFamily: CustomFont.fontBold,
                             color: Colors.white),
                       ),
                       Text(
                         " Home",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                        style: TextStyle(fontSize: 20, color: Colors.white,fontFamily: CustomFont.fontSemiBold),
                       )
                     ],
                   )

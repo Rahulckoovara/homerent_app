@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/config/custom_fonts.dart';
 
 class TextInput extends StatelessWidget {
   final String labelText;
@@ -36,7 +37,7 @@ class TextInput extends StatelessWidget {
         Text(
           labelText,
           style: TextStyle(
-              // fontFamily: CustomFont.fontMedium,
+              fontFamily: CustomFont.fontSemiBold,
               fontSize: CustomDimens.txtHintFont,
               color: CustomColors.txtHint),
         ),
@@ -56,7 +57,9 @@ class TextInput extends StatelessWidget {
           maxLength: maxLength,
           decoration: InputDecoration(
             hintText: hintText,
+            
             hintStyle: TextStyle(
+              fontFamily: CustomFont.fontRegular,
                 color: CustomColors.txtfieldHint,
                 //  fontFamily: CustomFont.fontRegular,
                 fontSize: CustomDimens.txtinputLabel),

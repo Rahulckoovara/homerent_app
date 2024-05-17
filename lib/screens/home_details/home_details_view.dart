@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/config/custom_fonts.dart';
 import 'package:tappal_app/widgets/primary_button.dart';
 
 class HomeDetails extends StatelessWidget {
@@ -39,7 +40,7 @@ class HomeDetails extends StatelessWidget {
                   SizedBox(height: CustomDimens.spacerH),
                   Text(
                     "Flat Name",
-                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,fontFamily: CustomFont.fontBold),
                   ),
                   SizedBox(height: CustomDimens.spacerH),
                   Row(
@@ -47,7 +48,7 @@ class HomeDetails extends StatelessWidget {
                       Icon(Icons.location_pin),
                       Text(
                         ' 84 Kozhikode,678456',
-                        style: TextStyle(color: Colors.blueGrey),
+                        style: TextStyle(color: Colors.blueGrey,fontFamily: CustomFont.fontSemiBold),
                       ),
                     ],
                   ),
@@ -57,7 +58,7 @@ class HomeDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Facilities",
-                        style: TextStyle(
+                        style: TextStyle(fontFamily: CustomFont.fontSemiBold,
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       RichText(
@@ -65,6 +66,8 @@ class HomeDetails extends StatelessWidget {
                           TextSpan(
                             text: "₹30000",
                             style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: CustomFont.fontSemiBold,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
@@ -72,6 +75,7 @@ class HomeDetails extends StatelessWidget {
                           TextSpan(
                               text: '/Mon',
                               style: TextStyle(
+                                fontFamily: CustomFont.fontRegular,
                                   fontSize: 17, color: Colors.blueGrey)),
                         ]),
                       )
@@ -87,7 +91,7 @@ class HomeDetails extends StatelessWidget {
                       ),
                       Text(
                         '2 Bed ',
-                        style: TextStyle(
+                        style: TextStyle(fontFamily: CustomFont.fontMedium,
                             color: Color.fromARGB(255, 114, 114, 114)),
                       ),
                       SizedBox(width: 15),
@@ -97,7 +101,7 @@ class HomeDetails extends StatelessWidget {
                       ),
                       Text(
                         '3 Common',
-                        style: TextStyle(
+                        style: TextStyle(fontFamily: CustomFont.fontMedium,
                             color: Color.fromARGB(255, 114, 114, 114)),
                       ),
                       SizedBox(width: 15),
@@ -107,7 +111,7 @@ class HomeDetails extends StatelessWidget {
                       ),
                       Text(
                         '2 Bath',
-                        style: TextStyle(
+                        style: TextStyle(fontFamily: CustomFont.fontMedium,
                             color: Color.fromARGB(255, 114, 114, 114)),
                       ),
                     ],
@@ -117,7 +121,7 @@ class HomeDetails extends StatelessWidget {
                   ),
                   Text(
                     "Overview",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontFamily: CustomFont.fontMedium,fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: CustomDimens.spacerH,
@@ -125,6 +129,7 @@ class HomeDetails extends StatelessWidget {
                   Text(
                     "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                     style: TextStyle(
+                      fontFamily: CustomFont.fontRegular,
                       fontSize: 16,
                       color: Color.fromARGB(255, 126, 126, 126),
                     ),
@@ -142,7 +147,7 @@ class HomeDetails extends StatelessWidget {
                   ),
                   Text(
                     "Gallery",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontFamily: CustomFont.fontSemiBold,fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 200, // Set height for the grid view

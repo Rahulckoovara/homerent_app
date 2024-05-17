@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/config/custom_fonts.dart';
 
 class FavoriteController extends GetxController {
   var isFavorite = false.obs;
@@ -94,14 +95,14 @@ class Property extends StatelessWidget {
                 ],
               ),
               SizedBox(height: CustomDimens.spacerH),
-              Text(flatName, style: TextStyle(fontWeight: FontWeight.bold)),
+              Text(flatName, style: TextStyle(fontWeight: FontWeight.bold,fontFamily: CustomFont.fontSemiBold)),
               SizedBox(height: CustomDimens.spacerH),
               Row(
                 children: [
                   const Icon(Icons.location_on_outlined,
                       color: CustomColors.primaryIconBg),
                   Text(address,
-                      style: TextStyle(color: CustomColors.primarySubText)),
+                      style: TextStyle(color: CustomColors.primarySubText,fontFamily: CustomFont.fontRegular)),
                 ],
               ),
               SizedBox(height: CustomDimens.spacerH),
@@ -114,21 +115,21 @@ class Property extends StatelessWidget {
                       children: [
                         Icon(Icons.bed_outlined,
                             color: CustomColors.primaryIconBg),
-                        Text(bedroom),
+                        Text(bedroom,style: TextStyle(fontFamily: CustomFont.fontSemiBold),),
                       ],
                     ),
                     Row(
                       children: [
                         Icon(Icons.chair_outlined,
                             color: CustomColors.primaryIconBg),
-                        Text(livingRoom),
+                        Text(livingRoom,style: TextStyle(fontFamily: CustomFont.fontSemiBold),),
                       ],
                     ),
                     Row(
                       children: [
                         Icon(Icons.bathtub_outlined,
                             color: CustomColors.primaryIconBg),
-                        Text(bathroom),
+                        Text(bathroom,style: TextStyle(fontFamily: CustomFont.fontSemiBold),),
                       ],
                     ),
                   ],
@@ -141,11 +142,13 @@ class Property extends StatelessWidget {
                     TextSpan(
                       text: '₹$price',
                       style: TextStyle(
+                        fontFamily: CustomFont.fontMedium,
                           fontWeight: FontWeight.bold, color: Colors.black),
                     ),
                     TextSpan(
                       text: '/month',
                       style: TextStyle(
+                        fontFamily: CustomFont.fontRegular,
                         color: CustomColors.primarySubText,
                         fontWeight: FontWeight.bold,
                       ),

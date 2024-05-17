@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/config/custom_fonts.dart';
 import 'package:tappal_app/widgets/primary_button.dart';
 import 'package:lottie/lottie.dart';
 
@@ -23,12 +24,15 @@ class FrontPage extends StatelessWidget {
             children: [
               Text(
                 'Find Your \nApartment Here',
-                style: TextStyle(fontSize: 30),
+                
+                style: TextStyle(fontSize: 30,
+                fontFamily: CustomFont.fontBold),
               ),
               SizedBox(height: CustomDimens.spacerH),
               Text(
                 'Most it diagrams headline of should there with practice to and with my sections.',
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16,
+                fontFamily: CustomFont.fontRegular),
               ),
               SizedBox(height: CustomDimens.spacerH),
               SizedBox(height: CustomDimens.spacerH),
@@ -37,7 +41,7 @@ class FrontPage extends StatelessWidget {
               }, 'Get Started'),
               SizedBox(height: CustomDimens.spacerH),
               Container(
-                height: 500,
+                height: 450,
                 width: double.infinity,
                 child: Image.asset('assets/welcome.png'),
                 //Lottie.network('https://lottie.host/b65a75d6-05e9-4fc3-9d76-2894861fcb48/AHkc5GCwQE.json',

@@ -145,6 +145,7 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'See All',
                     style: TextStyle(
+                      fontFamily: CustomFont.fontMedium,
                         fontSize: 15, color: CustomColors.primarySubText),
                   ),
                 ],
@@ -164,8 +165,8 @@ class _HomePageState extends State<HomePage> {
                       id: 'id1',
                       onFavoriteTap: () {},
                       onTap: () {
-                        Get.to(Panorama());
-                        // Get.to(HomeDetails());
+                       
+                         Get.to(HomeDetails());
                       },
                     ),
                     SizedBox(width: CustomDimens.spacerH),
@@ -179,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                         price: '3000',
                         id: 'id2',
                         onFavoriteTap: () {},
-                        onTap: () {}),
+                        onTap: () { Get.to(Panorama());}),
                   ],
                 ),
               ),

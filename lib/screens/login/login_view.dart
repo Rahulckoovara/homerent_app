@@ -80,11 +80,11 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: CustomDimens.spacerH,
                     ),
-                    TextInput("Email", "enter email", null, false, null),
+                    TextInput("Email", "Enter email", null, false, null),
                     SizedBox(
                       height: CustomDimens.spacerH,
                     ),
-                    TextInput("Password", "enter password", null, true, null),
+                    TextInput("Password", "Enter password", null, true, null),
                     SizedBox(
                       height: 30,
                     ),

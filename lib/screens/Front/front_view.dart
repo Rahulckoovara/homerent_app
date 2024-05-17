@@ -38,7 +38,7 @@ class FrontPage extends StatelessWidget {
               SizedBox(height: CustomDimens.spacerH),
               PrimaryButton(() {
                 logic.goToLogin();
-              }, 'Get Started'),
+              }, 'Get Started',),
               SizedBox(height: CustomDimens.spacerH),
               Container(
                 height: 450,

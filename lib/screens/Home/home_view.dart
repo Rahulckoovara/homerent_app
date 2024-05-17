@@ -63,6 +63,7 @@ import 'package:get/get.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
+import 'package:tappal_app/panorama/panorama_view.dart';
 import 'package:tappal_app/screens/filter/filter_view.dart';
 import 'package:tappal_app/screens/home_details/home_details_view.dart';
 import 'package:tappal_app/widgets/Property_list.dart';
@@ -82,7 +83,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List<String> buttonValues = ['All', 'Homes', 'PG'];
    final List<String> imgList = [
-    'https://th.bing.com/th?id=OIP.EJVVN8C6-3mc5bhO0IXqhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
+    // 'https://th.bing.com/th?id=OIP.EJVVN8C6-3mc5bhO0IXqhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
     'https://th.bing.com/th?id=OIP.iE7mcw3w2aFFDhXP9A1lggHaE8&w=305&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
     'https://th.bing.com/th?id=OIP.ckg9D6vQqA2BS52933zcLwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
     
@@ -220,7 +221,8 @@ class _HomePageState extends State<HomePage> {
                       bathroom: '2',
                       price: '3000',
                       onTap: () {
-                        Get.to(HomeDetails());
+                        Get.to(Panorama());
+                       // Get.to(HomeDetails());
                       },
                     ),
                     SizedBox(width: CustomDimens.spacerH),

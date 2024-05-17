@@ -82,11 +82,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List<String> buttonValues = ['All', 'Homes', 'PG'];
-   final List<String> imgList = [
-    // 'https://th.bing.com/th?id=OIP.EJVVN8C6-3mc5bhO0IXqhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
+  final List<String> imgList = [
+    'https://th.bing.com/th?id=OIP.EJVVN8C6-3mc5bhO0IXqhwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
     'https://th.bing.com/th?id=OIP.iE7mcw3w2aFFDhXP9A1lggHaE8&w=305&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
     'https://th.bing.com/th?id=OIP.ckg9D6vQqA2BS52933zcLwHaE8&w=306&h=204&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2',
-    
   ];
 
   int _current = 0;
@@ -101,7 +100,6 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              
               RichText(
                 text: const TextSpan(
                   children: [
@@ -110,63 +108,62 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 30,
-                          color: Colors.black
-                          ),
+                          color: Colors.black),
                     ),
                     TextSpan(
                       text: '\nproperty',
-                      style: TextStyle(fontSize: 30,
-                       color: Colors.black
-                       ),
+                      style: TextStyle(fontSize: 30, color: Colors.black),
                     ),
                   ],
                 ),
               ),
               CarouselSlider(
-            options: CarouselOptions(
-              height: 150.0,
-              enlargeCenterPage: true,
-              autoPlay: true,
-              aspectRatio: 16 / 9,
-              autoPlayCurve: Curves.fastOutSlowIn,
-              enableInfiniteScroll: true,
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
-              viewportFraction: 0.8,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _current = index;
-                });
-              },
-            ),
-            items: imgList.map((item) => Container(
-              child: Center(
-                child: Image.network(item, fit: BoxFit.cover, width: 800)
+                options: CarouselOptions(
+                  height: 150.0,
+                  enlargeCenterPage: true,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  autoPlayCurve: Curves.easeOutCubic,
+                  enableInfiniteScroll: true,
+                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  viewportFraction: 0.8,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _current = index;
+                    });
+                  },
+                ),
+                items: imgList
+                    .map((item) => Container(
+                          child: Center(
+                              child: Image.network(item,
+                                  fit: BoxFit.cover, width: 800)),
+                        ))
+                    .toList(),
               ),
-            )).toList(),
-          ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: imgList.map((url) {
-          //     int index = imgList.indexOf(url);
-          //     return Container(
-          //       width: 8.0,
-          //       height: 8.0,
-          //       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-          //       decoration: BoxDecoration(
-          //         shape: BoxShape.circle,
-          //         color: _current == index
-          //             ? Color.fromRGBO(0, 0, 0, 0.9)
-          //             : Color.fromRGBO(0, 0, 0, 0.4),
-          //       ),
-          //     );
-          //   }).toList(),
-          // ),
-              
-         
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: imgList.map((url) {
+              //     int index = imgList.indexOf(url);
+              //     return Container(
+              //       width: 8.0,
+              //       height: 8.0,
+              //       margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+              //       decoration: BoxDecoration(
+              //         shape: BoxShape.circle,
+              //         color: _current == index
+              //             ? Color.fromRGBO(0, 0, 0, 0.9)
+              //             : Color.fromRGBO(0, 0, 0, 0.4),
+              //       ),
+              //     );
+              //   }).toList(),
+              // ),
+
               Container(
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),
-                color: Colors.grey[300]),
-               
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.grey[300]),
+
                 //color: Colors.grey[900],
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -193,9 +190,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              
+
               Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Properties',

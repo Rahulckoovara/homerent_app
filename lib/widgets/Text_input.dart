@@ -11,9 +11,10 @@ class TextInput extends StatelessWidget {
   final bool obscureText;
   final TextInputType keyboardType;
   final ValueChanged<String>? onChanged;
-  final String initialText;
   final bool isAllowAllCharacter;
+  final String? errorText;
   final int? maxLength;
+  final int? maxlines;
 
   const TextInput(
     this.labelText,
@@ -23,14 +24,14 @@ class TextInput extends StatelessWidget {
     this.onChanged, {
     super.key,
     this.keyboardType = TextInputType.text,
-    this.initialText = '',
     this.isAllowAllCharacter = true,
     this.maxLength,
+    this.errorText,
+    this.maxlines,
   });
 
   @override
   Widget build(BuildContext context) {
-    // TextEditingController _c =
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -45,33 +46,39 @@ class TextInput extends StatelessWidget {
           height: CustomDimens.txtHintSpacer,
         ),
         TextField(
-          controller: TextEditingController(text: initialText),
           inputFormatters: isAllowAllCharacter
               ? []
               : [
                   FilteringTextInputFormatter.allow(RegExp(r"[a-zA-Z\s,-.]")),
                 ],
           onChanged: onChanged,
+          maxLines: maxlines,
           obscureText: obscureText,
           keyboardType: keyboardType,
           maxLength: maxLength,
           decoration: InputDecoration(
             hintText: hintText,
-            
+
             hintStyle: TextStyle(
-              fontFamily: CustomFont.fontRegular,
+                fontFamily: CustomFont.fontRegular,
                 color: CustomColors.txtfieldHint,
                 //  fontFamily: CustomFont.fontRegular,
                 fontSize: CustomDimens.txtinputLabel),
             // hintText: hintText,
             icon: icon != null ? Icon(icon) : null,
             border: OutlineInputBorder(
+              
                 borderRadius: BorderRadius.circular(10.0),
                 borderSide: BorderSide(
-                  color: CustomColors.txtfieldBorder,
+                  color: const Color.fromARGB(255, 118, 12, 12),
                   width: CustomDimens.txtinputborderW,
                 )),
             counterText: '',
+            errorText:
+            
+                errorText != null && errorText!.isNotEmpty ? errorText : null,
+
+            errorStyle: TextStyle(color: Colors.red),
           ),
         ),
       ],

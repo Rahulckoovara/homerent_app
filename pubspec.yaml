@@ -19,7 +19,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.4.0-282.1.beta <4.0.0"
+  sdk: ">=3.3.0 <4.0.0"
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -38,6 +38,10 @@ dependencies:
   lottie: ^3.1.0
   carousel_slider: ^4.2.1
   panorama_viewer: ^1.0.5
+  image_picker: ^1.1.1
+  flutter_secure_storage: ^9.0.0
+  http: ^1.1.0
+  flutter_image_compress: ^1.1.0
 
 dev_dependencies:
   flutter_test:

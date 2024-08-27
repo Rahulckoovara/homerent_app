@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tappal_app/OWNER/screens/landing/landing_logic.dart';
 import 'package:tappal_app/config/custom_colors.dart';
-import 'package:tappal_app/screens/Home/landing/landing_logic.dart';
 
-class LandingView extends StatelessWidget {
-  const LandingView({super.key});
+class OwnerLandingView extends StatelessWidget {
+  const OwnerLandingView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final logic = Get.put(LandingLogic());
+    final logic = Get.put(OwnerLandingLogic());
     return Scaffold(
         body: SafeArea(
           child: Obx(
@@ -27,12 +27,8 @@ class LandingView extends StatelessWidget {
                 logic.changePage(index);
               },
               items: [
-                const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
                 const BottomNavigationBarItem(
-                    icon: Icon(
-                      Icons.favorite,
-                    ),
-                    label: 'Favorites'),
+                    icon: Icon(Icons.dashboard), label: 'Dashboard'),
                 const BottomNavigationBarItem(
                     icon: Icon(Icons.person), label: 'Profile'),
               ]),

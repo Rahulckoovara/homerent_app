@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
 import 'package:tappal_app/config/custom_fonts.dart';
-import 'package:tappal_app/screens/login/login_logic.dart';
+import 'package:tappal_app/screens/login/login/login_logic.dart';
+import 'package:tappal_app/screens/login/userReg/userReg_view.dart';
 import 'package:tappal_app/widgets/Text_input.dart';
 import 'package:tappal_app/widgets/primary_button.dart';
 
@@ -35,7 +36,7 @@ class LoginPage extends StatelessWidget {
                     height: 100,
                     width: 200,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -48,7 +49,10 @@ class LoginPage extends StatelessWidget {
                       ),
                       Text(
                         " Home",
-                        style: TextStyle(fontSize: 20, color: Colors.white,fontFamily: CustomFont.fontSemiBold),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                            fontFamily: CustomFont.fontSemiBold),
                       )
                     ],
                   )
@@ -80,24 +84,88 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: CustomDimens.spacerH,
                     ),
-                    TextInput("Email", "Enter email", null, false, null),
+                    TextInput(
+                      "Email",
+                      "Enter email",
+                      null,
+                      false,
+                      (value) {
+                        logic.setUserId(value);
+                      },
+                      errorText: logic.userIdError.value,
+                    ),
                     SizedBox(
                       height: CustomDimens.spacerH,
                     ),
-                    TextInput("Password", "Enter password", null, true, null),
-                    SizedBox(
+                    TextInput(
+                      "Password",
+                      "Enter password",
+                      null,
+                      true,
+                      (value) {
+                        logic.setPassword(value);
+                      },
+                      maxlines: 1,
+                      errorText: logic.passwordError.value,
+                    ),
+                    const SizedBox(
                       height: 30,
                     ),
                     Container(
                         width: double.infinity,
                         child: PrimaryButton(() {
-                          logic.goToHome();
-                        }, "LOGIN"))
+                          logic.login();
+                        }, "LOGIN")),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text("Create new account?"),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(UserRegPage());
+                          },
+                          child: Text(
+                            "Register",
+                            style: TextStyle(
+                                color: const Color.fromARGB(255, 3, 130, 233)),
+                          ),
+                        ),
+                      ],
+                    )
                   ],
                 ),
               ),
             ),
-          ))
+          )),
+
+      // Loading dialog
+      // Obx(() {
+      //   if (logic.isLoading.value) {
+      //     Future.delayed(Duration.zero, () {
+      //       // Show the loading dialog
+      //       Get.dialog(
+      //         const AlertDialog(
+      //           content: Row(
+      //             children: [
+      //               CircularProgressIndicator(),
+      //               SizedBox(width: 20),
+      //               Text("Logging in..."),
+      //             ],
+      //           ),
+      //         ),
+      //         barrierDismissible: false,
+      //       );
+      //     });
+      //   } else {
+      //     if (Get.isDialogOpen!) {
+      //       Get.back(); // Close the dialog when loading is false
+      //     }
+      //   }
+      //   return SizedBox.shrink();
+      // }),
     ]));
   }
 }

@@ -30,24 +30,6 @@ class APIService {
       //  print("wwwwwwwwwwwwwwwww$response");
       if (response.statusCode == 200) {
         print(response.statusCode);
-
-        // if (isSessionNeedtoStore) {
-        //   final data = jsonDecode(response.body);
-        //   if (data['result']['userID'] != null) {
-        //     final cookies = response.headers['set-cookie'];
-        //     if (cookies != null) {
-        //       final sessionIdMatch =
-        //           RegExp(r'session_id=([^;]*)').firstMatch(cookies);
-        //       if (sessionIdMatch != null) {
-        //         final sessionId = sessionIdMatch.group(1);
-        //         await storageutils.write(
-        //             CustomConstants.sessionId, sessionId.toString());
-        //         print('Session ID: $sessionId');
-        //       }
-        //     }
-        //   }
-        // }
-
         return jsonDecode(response.body);
         // Return success response data
       } else {
@@ -66,6 +48,7 @@ class APIService {
     required Function(bool) setLoadingState,
   }) async {
     // Set loading state to true
+    setLoadingState(true);
     String? tokenNullable =
         await storageutils.read(CustomConstants.storageToken);
     try {

@@ -24,17 +24,33 @@ class LoginPage extends StatelessWidget {
           left: 0,
           right: 0,
           child: Container(
-            height: MediaQuery.of(context).size.height * 0.6,
+            // decoration: const BoxDecoration(
+            //   gradient: LinearGradient(
+            //     colors: [
+            //       CustomColors.primaryColor,
+            //       Colors.green,
+            //     ],
+            //     begin: Alignment.topCenter,
+            //     end: Alignment.bottomCenter,
+            //   ),
+            //   borderRadius: BorderRadius.only(
+            //     bottomLeft: Radius.circular(30),
+            //     bottomRight: Radius.circular(30),
+            //   ),
+            // ),
+            height: MediaQuery.of(context).size.height / 3,
             width: double.infinity,
             color: CustomColors.primaryColor,
             child: SafeArea(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
                   Image.asset(
                     'assets/home_icon.png',
-                    height: 100,
-                    width: 200,
+                    height: 70,
+                    width: 100,
                   ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -42,7 +58,7 @@ class LoginPage extends StatelessWidget {
                       Text(
                         "Find",
                         style: TextStyle(
-                            fontSize: 35,
+                            fontSize: 30,
                             fontWeight: FontWeight.bold,
                             fontFamily: CustomFont.fontBold,
                             color: Colors.white),
@@ -61,7 +77,7 @@ class LoginPage extends StatelessWidget {
             ),
           )),
       Positioned(
-          top: MediaQuery.of(context).size.height / 2.1,
+          top: MediaQuery.of(context).size.height / 4,
           left: 0,
           right: 0,
           bottom: 0,
@@ -84,29 +100,33 @@ class LoginPage extends StatelessWidget {
                     SizedBox(
                       height: CustomDimens.spacerH,
                     ),
-                    TextInput(
-                      "Email",
-                      "Enter email",
-                      null,
-                      false,
-                      (value) {
-                        logic.setUserId(value);
-                      },
-                      errorText: logic.userIdError.value,
-                    ),
+                    Obx(() {
+                      return TextInput(
+                        "Email",
+                        "Enter email",
+                        null,
+                        false,
+                        (value) {
+                          logic.setUserId(value);
+                        },
+                        errorText: logic.userIdError.value,
+                      );
+                    }),
                     SizedBox(
                       height: CustomDimens.spacerH,
                     ),
-                    TextInput(
-                      "Password",
-                      "Enter password",
-                      null,
-                      true,
-                      (value) {
-                        logic.setPassword(value);
-                      },
-                      maxlines: 1,
-                      errorText: logic.passwordError.value,
+                    Obx(
+                      () => TextInput(
+                        "Password",
+                        "Enter password",
+                        null,
+                        true,
+                        (value) {
+                          logic.setPassword(value);
+                        },
+                        maxlines: 1,
+                        errorText: logic.passwordError.value,
+                      ),
                     ),
                     const SizedBox(
                       height: 30,
@@ -122,15 +142,15 @@ class LoginPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Create new account?"),
+                        const Text("Create new account?"),
                         GestureDetector(
                           onTap: () {
-                            Get.to(UserRegPage());
+                            Get.to(const UserRegPage());
                           },
-                          child: Text(
-                            "Register",
+                          child: const Text(
+                            " Register",
                             style: TextStyle(
-                                color: const Color.fromARGB(255, 3, 130, 233)),
+                                color: Color.fromARGB(255, 3, 130, 233)),
                           ),
                         ),
                       ],

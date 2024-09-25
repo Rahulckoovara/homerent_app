@@ -40,7 +40,10 @@ class HomeDetails extends StatelessWidget {
                   SizedBox(height: CustomDimens.spacerH),
                   Text(
                     "Flat Name",
-                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold,fontFamily: CustomFont.fontBold),
+                    style: TextStyle(
+                        fontSize: 23,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: CustomFont.fontBold),
                   ),
                   SizedBox(height: CustomDimens.spacerH),
                   Row(
@@ -48,7 +51,9 @@ class HomeDetails extends StatelessWidget {
                       Icon(Icons.location_pin),
                       Text(
                         ' 84 Kozhikode,678456',
-                        style: TextStyle(color: Colors.blueGrey,fontFamily: CustomFont.fontSemiBold),
+                        style: TextStyle(
+                            color: Colors.blueGrey,
+                            fontFamily: CustomFont.fontSemiBold),
                       ),
                     ],
                   ),
@@ -58,8 +63,10 @@ class HomeDetails extends StatelessWidget {
                     children: [
                       Text(
                         "Facilities",
-                        style: TextStyle(fontFamily: CustomFont.fontSemiBold,
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontFamily: CustomFont.fontSemiBold,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
                       ),
                       RichText(
                         text: TextSpan(children: [
@@ -75,8 +82,9 @@ class HomeDetails extends StatelessWidget {
                           TextSpan(
                               text: '/Mon',
                               style: TextStyle(
-                                fontFamily: CustomFont.fontRegular,
-                                  fontSize: 17, color: Colors.blueGrey)),
+                                  fontFamily: CustomFont.fontRegular,
+                                  fontSize: 17,
+                                  color: Colors.blueGrey)),
                         ]),
                       )
                     ],
@@ -91,7 +99,8 @@ class HomeDetails extends StatelessWidget {
                       ),
                       Text(
                         '2 Bed ',
-                        style: TextStyle(fontFamily: CustomFont.fontMedium,
+                        style: TextStyle(
+                            fontFamily: CustomFont.fontMedium,
                             color: Color.fromARGB(255, 114, 114, 114)),
                       ),
                       SizedBox(width: 15),
@@ -101,7 +110,8 @@ class HomeDetails extends StatelessWidget {
                       ),
                       Text(
                         '3 Common',
-                        style: TextStyle(fontFamily: CustomFont.fontMedium,
+                        style: TextStyle(
+                            fontFamily: CustomFont.fontMedium,
                             color: Color.fromARGB(255, 114, 114, 114)),
                       ),
                       SizedBox(width: 15),
@@ -111,7 +121,8 @@ class HomeDetails extends StatelessWidget {
                       ),
                       Text(
                         '2 Bath',
-                        style: TextStyle(fontFamily: CustomFont.fontMedium,
+                        style: TextStyle(
+                            fontFamily: CustomFont.fontMedium,
                             color: Color.fromARGB(255, 114, 114, 114)),
                       ),
                     ],
@@ -121,7 +132,10 @@ class HomeDetails extends StatelessWidget {
                   ),
                   Text(
                     "Overview",
-                    style: TextStyle(fontFamily: CustomFont.fontMedium,fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontFamily: CustomFont.fontMedium,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: CustomDimens.spacerH,
@@ -147,7 +161,10 @@ class HomeDetails extends StatelessWidget {
                   ),
                   Text(
                     "Gallery",
-                    style: TextStyle(fontFamily: CustomFont.fontSemiBold,fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontFamily: CustomFont.fontSemiBold,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 200, // Set height for the grid view

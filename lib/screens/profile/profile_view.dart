@@ -15,11 +15,10 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
           actions: [
             Padding(
-              padding: EdgeInsets.all(10.0),              
+              padding: EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
-                children: [   
-                              
+                children: [
                   Obx(
                     () => CircleAvatar(
                       backgroundImage: logic.imageBytes.value != null
@@ -38,8 +37,14 @@ class ProfilePage extends StatelessWidget {
               style: TextStyle(color: Colors.black),
             ),
           )),
-      body: const Center(
-        child: Text('Profile Page'),
+      body: Column(
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                logic.logout();
+              },
+              child: Text("Logout"))
+        ],
       ),
     );
   }

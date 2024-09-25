@@ -7,7 +7,9 @@ class LandingLogic extends GetxController {
 
   
   final RxInt currentIndex = 0.obs;
-  final List<Widget> pages = [HomePage(), Text("fav"), ProfilePage()];
+  final List<Widget> pages = [HomePage(), 
+  Text("fav"), 
+  ProfilePage()];
   void changePage(int index) {
     if (index < pages.length) {
       currentIndex.value = index;

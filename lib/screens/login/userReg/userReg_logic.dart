@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tappal_app/common/toast_type.dart';
 import 'package:tappal_app/common/utils.dart';
+import 'package:tappal_app/constants/nwtwork_path.dart';
 import 'package:tappal_app/screens/Home/home_view.dart';
 import 'package:tappal_app/screens/Home/landing/landing_view.dart';
 import 'package:tappal_app/screens/login/login/login_view.dart';
@@ -121,21 +122,21 @@ class RegisterLogic extends GetxController {
 
       // Convert the input data to a JSON string
       String jsonString = jsonEncode(inputData);
-
       // Calculate the size of the payload in bytes
       int imageSize = utf8.encode(base64Images.last).length;
 
       // Print the size of the image portion of the payload
       print('Image size: $imageSize bytes');
 
-      // You can now use the payload s
+      // You can now use the payloads
 
       final dynamic response = await apiService.postData(
-          path: "https://nodeapi-backend-r7wz.onrender.com/register",
+          path: "${CustomPath.baseUrl}register",
           inputData: inputData,
           setLoadingState: (bool loader) {
             isLoading.value = loader;
           });
+      print("callingggg.......");
 
       if (response != null) {
         Map<String, dynamic> result = response;

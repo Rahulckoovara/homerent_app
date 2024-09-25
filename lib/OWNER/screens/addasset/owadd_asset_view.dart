@@ -4,8 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:tappal_app/OWNER/screens/OwHomescreen/owhome_logic.dart';
-import 'package:tappal_app/OWNER/screens/landing/landing_logic.dart';
+import 'package:tappal_app/OWNER/screens/addasset/owadd_asset_logic.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
 import 'package:tappal_app/config/custom_fonts.dart';
@@ -14,8 +13,8 @@ import 'package:tappal_app/widgets/customdropdown.dart';
 import 'package:tappal_app/widgets/image_uploader.dart';
 import 'package:tappal_app/widgets/primary_button.dart';
 
-class OwnerHomePage extends StatelessWidget {
-  const OwnerHomePage({super.key});
+class AddAssetDetails extends StatelessWidget {
+  const AddAssetDetails({super.key});
 
   @override
   Widget build(BuildContext context) {

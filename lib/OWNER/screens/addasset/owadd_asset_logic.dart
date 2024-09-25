@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tappal_app/OWNER/screens/landing/landing_view.dart';
 import 'package:tappal_app/common/toast_type.dart';
 import 'package:tappal_app/common/utils.dart';
+import 'package:tappal_app/config/customConstants.dart';
+import 'package:tappal_app/constants/nwtwork_path.dart';
 import 'package:tappal_app/services/api_service.dart';
 import 'package:tappal_app/widgets/imgpickerdialog.dart';
 
@@ -317,7 +320,6 @@ class OwnerHomePageLogic extends GetxController {
       return false;
     }
     if (commonCountId == null) {
-      print("jsdjgasfjg");
       commonError.value = 'Fill Count';
       // toast(
       //   "common count not selected",
@@ -357,6 +359,9 @@ class OwnerHomePageLogic extends GetxController {
   //api call for the asset submission
 
   void submit() async {
+    String? userid = await storageutils.read(CustomConstants.userId);
+    print(userid);
+    print("userid: ${(userid.runtimeType)}");
 //bedroom count
     Map<String, String>? getSelectedBedroomCount =
         bedroomCount.firstWhereOrNull(
@@ -369,7 +374,6 @@ class OwnerHomePageLogic extends GetxController {
     Map<String, String>? getSelectedcommonCount = commonCount.firstWhereOrNull(
       (item) => item['id'] == commonCountId['id'],
     );
-
     String? common = getSelectedcommonCount?['value'];
     print("=================$common");
     //common count
@@ -386,6 +390,7 @@ class OwnerHomePageLogic extends GetxController {
           "this is the response${base64ImagesG.map((rxList) => rxList.isNotEmpty ? rxList.last : "").toList()}");
       print("no eroroooooooo");
       var inputData = {
+        "userId": userid,
         "assetname": assetName.value.toString(),
         "location": assetLocation.value.toString(),
         "bedrooms": bedroom,
@@ -396,9 +401,8 @@ class OwnerHomePageLogic extends GetxController {
         "thumbimage": base64ImagesT.isNotEmpty ? base64ImagesT.last : " ",
         "contact": contact.value,
         "gallery": [
-          base64ImagesG[0].isNotEmpty
-              ? base64ImagesG[0].last
-              : "", // First image
+          "  base64ImagesG[0].isNotEmpty ? base64ImagesG[0].last : "
+              "", // First image
           " base64ImagesG[1].isNotEmpty? base64ImagesG[1].last: "
               "", // Second image
           " base64ImagesG[2].isNotEmpty ? base64ImagesG[2].last : "
@@ -409,30 +413,20 @@ class OwnerHomePageLogic extends GetxController {
       // print("Type of 'image' in inputData: ${inputData['image'].runtimeType}");
       print("inputtt-----$inputData");
 
-      // // Convert the input data to a JSON string
-      // String jsonString = jsonEncode(inputData);
-
-      // // Calculate the size of the payload in bytes
-      // int imageSize = utf8.encode(base64Images.last).length;
-
-      // // Print the size of the image portion of the payload
-      // print('Image size: $imageSize bytes');
-
-      // // You can now use the payloads
+ 
 
       final dynamic response = await apiService.postData(
-          path: "https://nodeapi-backend-r7wz.onrender.com/assetdetails",
+          path: "${CustomPath.baseUrl}assetdetails",
           inputData: inputData,
           setLoadingState: (bool loader) {
             isLoading.value = loader;
           });
 
       if (response != null) {
-
         Map<String, dynamic> result = response;
         print(result);
         // if (result['message'] == "this email already in use try login") {
-        
+        Get.off(const OwnerLandingView());
         toast(
           "user asset uploaded",
           "user data uploaded succesfully",

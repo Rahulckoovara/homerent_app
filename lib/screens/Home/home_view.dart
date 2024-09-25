@@ -11,7 +11,7 @@ import 'package:tappal_app/widgets/Property_list.dart';
 import 'package:tappal_app/widgets/Selectable_button.dart';
 import 'package:tappal_app/widgets/Text_input.dart';
 import 'package:tappal_app/widgets/filter_button.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:carousel_slider/carousel_slider.dart ' as carousel;
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -61,33 +61,30 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-
-              CarouselSlider(
-                options: CarouselOptions(
-                  height: 150.0,
-                  enlargeCenterPage: true,
-                  autoPlay: true,
-                  aspectRatio: 16 / 9,
-                  autoPlayCurve: Curves.easeOutCubic,
-                  enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  viewportFraction: 0.8,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _current = index;
-                    });
-                  },
-                ),
-                items: imgList
-                    .map((item) => Container(
-                          child: Center(
-                              child: Image.network(item,
-                                  fit: BoxFit.cover, width: 800)),
-                        ))
-                    .toList(),
-              ),
-              
-
+              // carousel.CarouselSlider(
+              //   options: carousel.CarouselOptions(
+              //     height: 150.0,
+              //     enlargeCenterPage: true,
+              //     autoPlay: true,
+              //     aspectRatio: 16 / 9,
+              //     autoPlayCurve: Curves.easeOutCubic,
+              //     enableInfiniteScroll: true,
+              //     autoPlayAnimationDuration: Duration(milliseconds: 800),
+              //     viewportFraction: 0.8,
+              //     onPageChanged: (index, reason) {
+              //       setState(() {
+              //         _current = index;
+              //       });
+              //     },
+              //   ),
+              //   items: imgList
+              //       .map((item) => Container(
+              //             child: Center(
+              //                 child: Image.network(item,
+              //                     fit: BoxFit.cover, width: 800)),
+              //           ))
+              //       .toList(),
+              // ),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -111,16 +108,15 @@ class _HomePageState extends State<HomePage> {
                         ),
                       FilterButton(
                         onPressed: () {
-                          Get.to(FilterPage());
+                          Get.to(const FilterPage());
                         },
                         icon: Icons.filter_alt_outlined,
-                      )
+                      ),
                     ],
                   ),
                 ),
               ),
-
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -133,8 +129,9 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'See All',
                     style: TextStyle(
-                      fontFamily: CustomFont.fontMedium,
-                        fontSize: 15, color: CustomColors.primarySubText),
+                        fontFamily: CustomFont.fontMedium,
+                        fontSize: 15,
+                        color: CustomColors.primarySubText),
                   ),
                 ],
               ),
@@ -153,8 +150,7 @@ class _HomePageState extends State<HomePage> {
                       id: 'id1',
                       onFavoriteTap: () {},
                       onTap: () {
-                       
-                         Get.to(HomeDetails());
+                        Get.to(HomeDetails());
                       },
                     ),
                     SizedBox(width: CustomDimens.spacerH),
@@ -168,7 +164,9 @@ class _HomePageState extends State<HomePage> {
                         price: '3000',
                         id: 'id2',
                         onFavoriteTap: () {},
-                        onTap: () { Get.to(Panorama());}),
+                        onTap: () {
+                          Get.to(const Panorama());
+                        }),
                   ],
                 ),
               ),

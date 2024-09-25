@@ -4,10 +4,9 @@ import 'package:tappal_app/OWNER/screens/landing/landing_view.dart';
 import 'package:tappal_app/common/toast_type.dart';
 import 'package:tappal_app/common/utils.dart';
 import 'package:tappal_app/config/customConstants.dart';
-import 'package:tappal_app/screens/Home/home_view.dart';
-import 'package:tappal_app/screens/Home/landing/landing_logic.dart';
+import 'package:tappal_app/config/custom_colors.dart';
+import 'package:tappal_app/constants/nwtwork_path.dart';
 import 'package:tappal_app/screens/Home/landing/landing_view.dart';
-import 'package:tappal_app/screens/login/login/login_view.dart';
 import 'package:tappal_app/services/api_service.dart';
 
 class LoginLogic extends GetxController {
@@ -43,67 +42,67 @@ class LoginLogic extends GetxController {
   }
 
   void login() async {
-    //  print("loading........${isLoading.value}");
     if (validateInputs()) {
       var inputData = {
         "username": userId.value.trim(),
-        "password": password.value,
+        "password": password.value.trim(),
       };
 
-      if (isLoading.value == true) {
-        Get.dialog(
-          const AlertDialog(
-            content: Row(
-              children: [
-                CircularProgressIndicator(),
-                SizedBox(width: 20),
-                Text("Logging in..."),
-              ],
-            ),
-          ),
-          barrierDismissible:
-              false, // Prevents dismissing the dialog by tapping outside
-        );
-      }
+      Get.dialog(
+        const Center(
+            child: CircularProgressIndicator(
+          color: CustomColors.primaryColor,
+        )),
+        barrierDismissible: false,
+      );
 
-      final dynamic response = await apiService.postData(
-          path: "https://nodeapi-backend-r7wz.onrender.com/login",
+      try {
+        final dynamic response = await apiService.postData(
+          path: "${CustomPath.baseUrl}login",
           inputData: inputData,
           setLoadingState: (bool loader) {
-            //  print("loadinggg....$loader");
-            print("valueueeee:::${isLoading.value}");
             isLoading.value = loader;
-          });
-      if (response != null) {
-        isLoading.value = false;
-        Map<String, dynamic> result = response;
-        print("result with the sucess msggg-----$result");
-        var userid = result['userId'];
+          },
+        );
 
-        if (result['error'] == "Invalid username" ||
-            (result['error']) == "Invalid password") {
-          toast(
-            "Login Failed",
-            "Invalid username or password",
-            ToastType.error,
-          );
-        } else {
-          var accessToken = result['token'];
-          print("tokeeeeeeeeeeeeeeee$accessToken");
-          await storageutils.write(CustomConstants.userId, userid ?? "NA");
-          await storageutils.write(
-              CustomConstants.storageToken, accessToken ?? "NA");
-          toast(
-            "Login  Successfull",
-            "You have logged in successfully",
-            ToastType.success,
-          );
+        if (response != null) {
+          Map<String, dynamic> result = response;
+          print("the result id---$result");
+          var userid = result['userId'];
 
-          if (result['isowner'] == true) {
-            Get.to(OwnerLandingView());
-          } else {
-            Get.to(LandingView());
+          if (result['error'] == "Invalid username" ||
+              result['error'] == "Invalid password") {
+            if (Get.isDialogOpen == true) {
+              Get.back();
+            }
+            toast("Login Failed", "Invalid username or password",
+                ToastType.error);
+          } else if (result.containsKey("token")) {
+            var accessToken = result['token'];
+            await storageutils.write(CustomConstants.userId, userid ?? "NA");
+            await storageutils.write(
+                CustomConstants.storageToken, accessToken ?? "NA");
+            toast("Login Successful", "You have logged in successfully",
+                ToastType.success);
+
+            // Navigate to appropriate screen after successful login
+            if (result['isowner'] == true) {
+              await storageutils.write(CustomConstants.isOwner, "true");
+              Get.offAll(const OwnerLandingView());
+            } else {
+              Get.offAll(const LandingView());
+            }
           }
+        } else {
+          toast("Login Failed", "An error occurred , Please try again",
+              ToastType.error);
+          if (Get.isDialogOpen == true) {
+            Get.back();
+          }
+        }
+      } finally {
+        if (Get.isDialogOpen == true) {
+          Get.back();
         }
       }
     }

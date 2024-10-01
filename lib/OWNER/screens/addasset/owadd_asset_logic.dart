@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'package:http/http.dart' as http;
+import 'dart:io'; // For File
 
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -359,6 +361,17 @@ class OwnerHomePageLogic extends GetxController {
   //api call for the asset submission
 
   void submit() async {
+    //  for (var image in selectedFilesG) {
+    //     Uint8List imageBytes = await image.readAsBytes();
+    //     final multipartFile = http.MultipartFile.fromBytes(
+    //       'files[]', // Field name for multiple files
+    //       imageBytes,
+    //       filename: image.name, // Use the original file name
+    //       contentType: MediaType('image', 'jpeg'), // Adjust content-type as necessary
+    //     );
+    //     request.files.add(multipartFile);
+    //   }
+
     String? userid = await storageutils.read(CustomConstants.userId);
     print(userid);
     print("userid: ${(userid.runtimeType)}");
@@ -386,9 +399,8 @@ class OwnerHomePageLogic extends GetxController {
     print("=================$bathroom");
 
     if (validateInputs()) {
-      print(
-          "this is the response${base64ImagesG.map((rxList) => rxList.isNotEmpty ? rxList.last : "").toList()}");
-      print("no eroroooooooo");
+      // print(
+      //     "this is the response${base64ImagesG.map((rxList) => rxList.isNotEmpty ? rxList.last : "").toList()}");
       var inputData = {
         "userId": userid,
         "assetname": assetName.value.toString(),
@@ -407,13 +419,11 @@ class OwnerHomePageLogic extends GetxController {
               "", // Second image
           " base64ImagesG[2].isNotEmpty ? base64ImagesG[2].last : "
               ""
-        ]
+        ],
       };
 
       // print("Type of 'image' in inputData: ${inputData['image'].runtimeType}");
-      print("inputtt-----$inputData");
-
- 
+      //  print("inputtt-----$inputData");
 
       final dynamic response = await apiService.postData(
           path: "${CustomPath.baseUrl}assetdetails",
@@ -425,10 +435,9 @@ class OwnerHomePageLogic extends GetxController {
       if (response != null) {
         Map<String, dynamic> result = response;
         print(result);
-        // if (result['message'] == "this email already in use try login") {
         Get.off(const OwnerLandingView());
         toast(
-          "user asset uploaded",
+          "User asset uploaded",
           "user data uploaded succesfully",
           ToastType.success,
         );

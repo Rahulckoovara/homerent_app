@@ -1,18 +1,18 @@
-import 'package:flutter/foundation.dart';
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
 import 'package:tappal_app/config/custom_fonts.dart';
 
-class FavoriteController extends GetxController {
-  var isFavorite = false.obs;
+// class FavoriteController extends GetxController {
+//   var isFavorite = false.obs;
 
-  void toggleFavorite() {
-    isFavorite.value = !isFavorite.value;
-  }
-}
+//   void toggleFavorite() {
+//     isFavorite.value = !isFavorite.value;
+//   }
+// }
 
 class Property extends StatelessWidget {
   final String imagePath;
@@ -23,32 +23,44 @@ class Property extends StatelessWidget {
   final String bathroom;
   final String price;
   final VoidCallback onTap;
-  final VoidCallback onFavoriteTap;
-  final String id; // Callback for favorite button tap
+  final double height;
+  final double width;
+  // final VoidCallback onFavoriteTap;
+  //final String id; // Callback for favorite button tap
 
-  const Property(
-      {super.key,
-      required this.imagePath,
-      required this.flatName,
-      required this.address,
-      required this.bedroom,
-      required this.livingRoom,
-      required this.bathroom,
-      required this.price,
-      required this.onTap,
-      required this.onFavoriteTap,
-      required this.id // Add the onFavoriteTap callback
-      });
+  const Property({
+    super.key,
+    required this.imagePath,
+    required this.flatName,
+    required this.address,
+    required this.bedroom,
+    required this.livingRoom,
+    required this.bathroom,
+    required this.price,
+    required this.onTap,
+    required this.height,
+    required this.width,
+    // required this.onFavoriteTap,
+    // required this.id // Add the onFavoriteTap callback
+  });
 
   @override
   Widget build(BuildContext context) {
-    final FavoriteController favoriteController =
-        Get.put(FavoriteController(), tag: id);
+    Uint8List _decodeImage(String base64String) {
+      return base64Decode(base64String);
+    }
+
+    // final FavoriteController favoriteController =
+    //     Get.put(FavoriteController(), tag: id);
+    double parentHeight = height;
+    double imageHeight = parentHeight * 0.5;
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        onTap();
+      },
       child: Container(
-        height: 320,
-        width: MediaQuery.of(context).size.width * 0.6,
+        height: parentHeight,
+        width: width, //MediaQuery.of(context).size.width * 0.6,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
@@ -61,75 +73,101 @@ class Property extends StatelessWidget {
               Stack(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
                     child: Container(
-                      height: 150,
+                      height: imageHeight,
                       width: double.infinity,
-                      child: Image.asset(imagePath, fit: BoxFit.cover),
-                    ),
-                  ),
-                  Positioned(
-                    top: 8,
-                    right: 8,
-                    child: GestureDetector(
-                      onTap: favoriteController.toggleFavorite,
-                      child: Obx(
-                        () => Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.8),
-                            shape: BoxShape.circle,
-                          ),
-                          padding: EdgeInsets.all(8),
-                          child: Icon(
-                            favoriteController.isFavorite.value
-                                ? Icons.favorite
-                                : Icons.favorite_border,
-                            color: favoriteController.isFavorite.value
-                                ? Colors.red
-                                : CustomColors.primaryIconBg,
-                          ),
-                        ),
+                      child: Image.memory(
+                        _decodeImage(imagePath),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
+                  // Positioned(
+                  //   top: 8,
+                  //   right: 8,
+                  //   child: GestureDetector(
+                  //     onTap: favoriteController.toggleFavorite,
+                  //     child: Obx(
+                  //       () => Container(
+                  //         decoration: BoxDecoration(
+                  //           color: Colors.white.withOpacity(0.8),
+                  //           shape: BoxShape.circle,
+                  //         ),
+                  //         padding: const EdgeInsets.all(8),
+                  //         child: Icon(
+                  //           favoriteController.isFavorite.value
+                  //               ? Icons.favorite
+                  //               : Icons.favorite_border,
+                  //           color: favoriteController.isFavorite.value
+                  //               ? Colors.red
+                  //               : CustomColors.primaryIconBg,
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
               SizedBox(height: CustomDimens.spacerH),
-              Text(flatName, style: TextStyle(fontWeight: FontWeight.bold,fontFamily: CustomFont.fontSemiBold)),
+              Flexible(
+                  child: Text(
+                flatName,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontFamily: CustomFont.fontSemiBold,
+                ),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              )),
               SizedBox(height: CustomDimens.spacerH),
               Row(
                 children: [
                   const Icon(Icons.location_on_outlined,
                       color: CustomColors.primaryIconBg),
                   Text(address,
-                      style: TextStyle(color: CustomColors.primarySubText,fontFamily: CustomFont.fontRegular)),
+                      style: const TextStyle(
+                          color: CustomColors.primarySubText,
+                          fontFamily: CustomFont.fontRegular)),
                 ],
               ),
               SizedBox(height: CustomDimens.spacerH),
               Padding(
-                padding: EdgeInsets.only(right: 50.0),
+                padding: const EdgeInsets.only(right: 50.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.bed_outlined,
+                        const Icon(Icons.bed_outlined,
                             color: CustomColors.primaryIconBg),
-                        Text(bedroom,style: TextStyle(fontFamily: CustomFont.fontSemiBold),),
+                        Text(
+                          bedroom,
+                          style: const TextStyle(
+                              fontFamily: CustomFont.fontSemiBold),
+                        ),
                       ],
                     ),
                     Row(
                       children: [
-                        Icon(Icons.chair_outlined,
+                        const Icon(Icons.chair_outlined,
                             color: CustomColors.primaryIconBg),
-                        Text(livingRoom,style: TextStyle(fontFamily: CustomFont.fontSemiBold),),
+                        Text(
+                          livingRoom,
+                          style: const TextStyle(
+                              fontFamily: CustomFont.fontSemiBold),
+                        ),
                       ],
                     ),
                     Row(
                       children: [
-                        Icon(Icons.bathtub_outlined,
+                        const Icon(Icons.bathtub_outlined,
                             color: CustomColors.primaryIconBg),
-                        Text(bathroom,style: TextStyle(fontFamily: CustomFont.fontSemiBold),),
+                        Text(
+                          bathroom,
+                          style: const TextStyle(
+                              fontFamily: CustomFont.fontSemiBold),
+                        ),
                       ],
                     ),
                   ],
@@ -141,11 +179,12 @@ class Property extends StatelessWidget {
                   children: [
                     TextSpan(
                       text: '₹$price',
-                      style: TextStyle(
-                        fontFamily: CustomFont.fontMedium,
-                          fontWeight: FontWeight.bold, color: Colors.black),
+                      style: const TextStyle(
+                          fontFamily: CustomFont.fontMedium,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
                     ),
-                    TextSpan(
+                    const TextSpan(
                       text: '/month',
                       style: TextStyle(
                         fontFamily: CustomFont.fontRegular,

@@ -57,6 +57,7 @@ class APIService {
         url,
         headers: getApiHeaders(tokenNullable ?? ""),
       );
+      print(url);
       if (response.statusCode == 200) {
         var responseBody = response.body;
         return jsonDecode(responseBody); // Return success response data

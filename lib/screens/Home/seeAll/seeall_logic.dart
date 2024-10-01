@@ -4,7 +4,7 @@ import 'package:tappal_app/constants/nwtwork_path.dart';
 import 'package:tappal_app/screens/home_details/home_details_view.dart';
 import 'package:tappal_app/services/api_service.dart';
 
-class HomeLogic extends GetxController {
+class SeeAllLogic extends GetxController {
   APIService apiService = APIService();
   final isLoading = false.obs;
   RxList<dynamic> propertyData = RxList();

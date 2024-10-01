@@ -21,7 +21,7 @@ class ProfileLogic extends GetxController {
   }
 
   Future<void> logout() async {
-    Get.to(const LoginLoaderPage());
+    Get.offAll(const LoginLoaderPage());
     storageutils.clear();
   }
 

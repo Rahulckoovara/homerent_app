@@ -15,8 +15,7 @@ class MyAssetList extends StatelessWidget {
           final asset = assetData[index];
           return GestureDetector(
             onTap: () {
-              final assetId = asset['_id']
-                  .toString(); 
+              final assetId = asset['_id'].toString();
               onTap(assetId);
             },
             child: Container(
@@ -27,30 +26,45 @@ class MyAssetList extends StatelessWidget {
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
                     side: const BorderSide(
-                      width: 1,
                       strokeAlign: BorderSide.strokeAlignCenter,
                       color: Color.fromRGBO(242, 242, 242, 1),
                     ),
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(6),
                   ),
                   shadows: const [
                     BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.098),
-                      blurRadius: 4,
+                      blurRadius: 3,
                       offset: Offset(0, 0),
                       spreadRadius: 0,
                     ),
                   ],
                 ),
                 child: ListTile(
-                  leading: const CircleAvatar(),
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(6.0),
+                    child: Container(
+                      color: Colors.blue[100],
+                      height: double.infinity,
+                      width: 55,
+                    ),
+                  ),
                   title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("${asset['assetname']}"),
-                      const SizedBox(
-                        height: 10,
+                      Text(
+                        "${asset['assetname']}",
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                      Text("${asset['location']}"),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text("${asset['location']}",
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w300,
+                          )),
                     ],
                   ),
                   trailing: const Icon(Icons.keyboard_arrow_right_sharp),

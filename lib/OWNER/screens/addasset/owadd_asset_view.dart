@@ -39,6 +39,7 @@ class AddAssetDetails extends StatelessWidget {
                 SizedBox(height: CustomDimens.spacerH),
                 Obx(
                   () => TextInput(
+                    //keyboardType: TextInputType.s,
                     "Asset Name",
                     "Enter your asset name",
                     null,
@@ -59,6 +60,7 @@ class AddAssetDetails extends StatelessWidget {
                     (val) {
                       logic.assetLocation(val);
                     },
+                    maxLength: 15,
                     errorText: logic.assetLocationError.value,
                   ),
                 ),

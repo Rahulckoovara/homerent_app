@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tappal_app/OWNER/screens/addasset/owadd_asset_view.dart';
 import 'package:tappal_app/OWNER/screens/myassets/myassets_view.dart';
@@ -21,7 +20,7 @@ class OwnerHomeScreen extends StatelessWidget {
           padding: EdgeInsets.all(CustomDimens.commonPadding),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 200,
                 width: double.infinity,
                 child: ClipRRect(
@@ -64,11 +63,11 @@ class OwnerHomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: ListTile(
-                  title: Text("Your Assets"),
-                  leading: Icon(Icons.home_work_outlined),
-                  trailing: Icon(Icons.keyboard_arrow_right_rounded),
+                  title: const Text("Your Assets"),
+                  leading: const Icon(Icons.home_work_outlined),
+                  trailing: const Icon(Icons.keyboard_arrow_right_rounded),
                   onTap: () {
-                    Get.to(() => MyAssets());
+                    Get.to(() => const MyAssets());
                   },
                 ),
               )

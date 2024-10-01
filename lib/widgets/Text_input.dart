@@ -15,13 +15,13 @@ class TextInput extends StatelessWidget {
   final String? errorText;
   final int? maxLength;
   final int? maxlines;
-  
+
   const TextInput(
     this.labelText,
     this.hintText,
     this.icon,
     this.obscureText,
-    this.onChanged,{
+    this.onChanged, {
     super.key,
     this.keyboardType = TextInputType.text,
     this.isAllowAllCharacter = true,
@@ -57,23 +57,37 @@ class TextInput extends StatelessWidget {
           keyboardType: keyboardType,
           maxLength: maxLength,
           decoration: InputDecoration(
-          hintText: hintText,
-          hintStyle: TextStyle(
+            hintText: hintText,
+            hintStyle: TextStyle(
                 fontFamily: CustomFont.fontRegular,
                 color: CustomColors.txtfieldHint,
                 //  fontFamily: CustomFont.fontRegular,
                 fontSize: CustomDimens.txtinputLabel),
-            // hintText: hintText,
+            //hintText: hintText,
             icon: icon != null ? Icon(icon) : null,
-            border: OutlineInputBorder(            
+            border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
                 borderSide: BorderSide(
-                  color: const Color.fromARGB(255, 118, 12, 12),
                   width: CustomDimens.txtinputborderW,
                 )),
             counterText: '',
-            errorText:          
-            errorText != null && errorText!.isNotEmpty ? errorText : null,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(
+                color: Color(0xFFE2E2E2),
+                width: CustomDimens.txtinputborderW,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(
+                color: const Color.fromARGB(
+                    255, 222, 238, 189), // Your custom color
+                width: CustomDimens.txtinputborderW,
+              ),
+            ),
+            errorText:
+                errorText != null && errorText!.isNotEmpty ? errorText : null,
             errorStyle: const TextStyle(color: Colors.red),
           ),
         ),

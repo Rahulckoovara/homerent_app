@@ -15,7 +15,7 @@ class ProfilePage extends StatelessWidget {
       appBar: AppBar(
           actions: [
             Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -34,7 +34,7 @@ class ProfilePage extends StatelessWidget {
           title: Obx(
             () => Text(
               "Hi, ${logic.userName.value}",
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
           )),
       body: Column(
@@ -43,7 +43,7 @@ class ProfilePage extends StatelessWidget {
               onPressed: () {
                 logic.logout();
               },
-              child: Text("Logout"))
+              child: const Text("Logout"))
         ],
       ),
     );

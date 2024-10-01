@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tappal_app/config/custom_colors.dart';
-import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/config/custom_dia.dart';
 import 'package:tappal_app/config/custom_fonts.dart';
-import 'package:tappal_app/panorama/panorama_view.dart';
+import 'package:tappal_app/config/list/property_list.dart';
+import 'package:tappal_app/screens/Home/home_logic.dart';
+import 'package:tappal_app/screens/Home/seeAll/seeall_view.dart';
 import 'package:tappal_app/screens/filter/filter_view.dart';
-import 'package:tappal_app/screens/home_details/home_details_view.dart';
-import 'package:tappal_app/widgets/Property_list.dart';
 import 'package:tappal_app/widgets/Selectable_button.dart';
-import 'package:tappal_app/widgets/Text_input.dart';
 import 'package:tappal_app/widgets/filter_button.dart';
 // import 'package:carousel_slider/carousel_slider.dart ' as carousel;
 
@@ -32,14 +30,16 @@ class _HomePageState extends State<HomePage> {
   int _current = 0;
   @override
   Widget build(BuildContext context) {
+    final logic = Get.put(HomeLogic());
     return SafeArea(
       child: Scaffold(
         body: Padding(
           padding: EdgeInsets.all(CustomDimens.commonPadding),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start, // Align to start
             children: [
+              // Title Text
               RichText(
                 text: const TextSpan(
                   children: [
@@ -61,36 +61,14 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              // carousel.CarouselSlider(
-              //   options: carousel.CarouselOptions(
-              //     height: 150.0,
-              //     enlargeCenterPage: true,
-              //     autoPlay: true,
-              //     aspectRatio: 16 / 9,
-              //     autoPlayCurve: Curves.easeOutCubic,
-              //     enableInfiniteScroll: true,
-              //     autoPlayAnimationDuration: Duration(milliseconds: 800),
-              //     viewportFraction: 0.8,
-              //     onPageChanged: (index, reason) {
-              //       setState(() {
-              //         _current = index;
-              //       });
-              //     },
-              //   ),
-              //   items: imgList
-              //       .map((item) => Container(
-              //             child: Center(
-              //                 child: Image.network(item,
-              //                     fit: BoxFit.cover, width: 800)),
-              //           ))
-              //       .toList(),
-              // ),
+              const SizedBox(
+                  height: 20), // Add spacing between text and filter buttons
+              // Filter Buttons
               Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.grey[300]),
-
-                //color: Colors.grey[900],
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.grey[300],
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -116,7 +94,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              const Row(
+              const SizedBox(
+                  height: 20), // Add spacing between filter and title
+              // Properties Title
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -126,48 +107,29 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold,
                         fontFamily: CustomFont.fontSemiBold),
                   ),
-                  Text(
-                    'See All',
-                    style: TextStyle(
-                        fontFamily: CustomFont.fontMedium,
-                        fontSize: 15,
-                        color: CustomColors.primarySubText),
-                  ),
+                  TextButton(
+                      onPressed: () {
+                        Get.to(SeeAllPage());
+                      }
+                      // Get.to(const FilterPage());
+                      ,
+                      child: Text('See All',
+                          style: TextStyle(
+                              fontFamily: CustomFont.fontMedium,
+                              fontSize: 15,
+                              color: CustomColors.primarySubText))),
                 ],
               ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Property(
-                      imagePath: 'assets/flat1.jpg',
-                      flatName: 'Park Avenue Apartment',
-                      address: '84 kozhikode st usa',
-                      bedroom: '3',
-                      livingRoom: '2',
-                      bathroom: '2',
-                      price: '3000',
-                      id: 'id1',
-                      onFavoriteTap: () {},
-                      onTap: () {
-                        Get.to(HomeDetails());
-                      },
-                    ),
-                    SizedBox(width: CustomDimens.spacerH),
-                    Property(
-                        imagePath: 'assets/flat2.jpg',
-                        flatName: 'Park Avenue Apartment',
-                        address: '84 kozhikode st usa',
-                        bedroom: '3',
-                        livingRoom: '2',
-                        bathroom: '2',
-                        price: '3000',
-                        id: 'id2',
-                        onFavoriteTap: () {},
-                        onTap: () {
-                          Get.to(const Panorama());
-                        }),
-                  ],
+              const SizedBox(
+                  height: 10), // Add spacing between title and property list
+              Flexible(
+                fit: FlexFit
+                    .loose, // Allows the list to grow as needed without forcing expansion
+                child: PropertyList(
+                  logic.propertyData,
+                  (String userId, String propertyId) {
+                    logic.gotoHomeDetails(userId, propertyId);
+                  },
                 ),
               ),
             ],
@@ -177,62 +139,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-// import 'package:flutter/material.dart';
-
-// class ButtonPage extends StatefulWidget {
-//   @override
-//   _ButtonPageState createState() => _ButtonPageState();
-// }
-
-// class _ButtonPageState extends State<ButtonPage> {
-//   int _selectedIndex = -1; // Default value for no selection
-//   List<String> buttonValues = ['Button 1', 'Button 2', 'Button 3'];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Button Page'),
-//       ),
-//       body: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         crossAxisAlignment: CrossAxisAlignment.stretch,
-//         children: [
-//           Column(
-//             children: buttonValues
-//                 .asMap()
-//                 .entries
-//                 .map(
-//                   (entry) => Padding(
-//                     padding: const EdgeInsets.all(8.0),
-//                     child: ElevatedButton(
-//                       onPressed: () {
-//                         setState(() {
-//                           // Update the selected index
-//                           _selectedIndex = entry.key;
-//                         });
-//                       },
-//                       style: ElevatedButton.styleFrom(
-//                         backgroundColor: _selectedIndex == entry.key
-//                             ? Color.fromARGB(255, 4, 85, 92) // Change color of selected button
-//                             : Colors.white,
-//                       ),
-//                       child: Text(entry.value),
-//                     ),
-//                   ),
-//                 )
-//                 .toList(),
-//           ),
-//           SizedBox(height: 20), // Add spacing between buttons and selected value
-//           _selectedIndex != -1
-//               ? Text(
-//                   'Selected Value: ${buttonValues[_selectedIndex]}',
-//                   textAlign: TextAlign.center,
-//                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-//                 )
-//               : SizedBox(), // Display nothing if no button is selected
-//         ],
-//       ),
-//     );
-//   }
-// }

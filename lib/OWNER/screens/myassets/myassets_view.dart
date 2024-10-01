@@ -13,6 +13,7 @@ class MyAssets extends StatelessWidget {
   Widget build(BuildContext context) {
     final logic = Get.put(MyAssetsLogic());
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text("My Assets"),
         ),

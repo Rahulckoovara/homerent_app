@@ -46,12 +46,27 @@ class CustomDropdownMenu extends StatelessWidget {
           ),
           // value: selectedvalue,
           decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(
+                color: Color(0xFFE2E2E2),
+                width: CustomDimens.txtinputborderW,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+              borderSide: BorderSide(
+                color: const Color.fromARGB(
+                    255, 222, 238, 189), // Your custom color
+                width: CustomDimens.txtinputborderW,
+              ),
+            ),
             border: OutlineInputBorder(
               borderSide: BorderSide(
                 color: CustomColors.txtfieldBorder,
                 width: CustomDimens.txtinputborderW,
               ),
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(10.0),
             ),
             errorText:
                 errorText != null && errorText!.isNotEmpty ? errorText : null,

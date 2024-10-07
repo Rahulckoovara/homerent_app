@@ -9,6 +9,7 @@ class SeeAllList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final reversedData = propertyData.reversed.toList();
     return GridView.builder(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2, // 2 items per row
@@ -19,13 +20,13 @@ class SeeAllList extends StatelessWidget {
       ),
       itemCount: propertyData.length,
       itemBuilder: (context, index) {
-        final property = propertyData[index];
+        final property = reversedData[index];
         final String propertyId = property['_id'];
         final String userId = property['userId'];
         return Column(
           children: [
             Property(
-              //onFavoriteTap: (property),
+              // onFavoriteTap: (property),
               imagePath: property['thumbimage'],
               flatName: property['assetname'],
               address: property['location'],

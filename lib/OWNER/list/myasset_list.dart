@@ -8,11 +8,12 @@ class MyAssetList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final reversedData = assetData.reversed.toList();
     return GestureDetector(
       child: ListView.builder(
         itemCount: assetData.length,
         itemBuilder: (context, index) {
-          final asset = assetData[index];
+          final asset = reversedData[index];
           return GestureDetector(
             onTap: () {
               final assetId = asset['_id'].toString();

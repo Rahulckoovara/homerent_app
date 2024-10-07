@@ -9,34 +9,37 @@ class PropertyList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int itemCount = propertyData.length > 5 ? 5 : propertyData.length;
+    final reversedData = propertyData.reversed.toList();
+    final int itemCount = reversedData.length > 5 ? 5 : reversedData.length;
     return ListView.builder(
       scrollDirection: Axis.horizontal,
-      itemCount: itemCount, // Ensure to set the itemCount
+      itemCount: itemCount,
       itemBuilder: (context, index) {
-        final property = propertyData[index];
+        final property = reversedData[index]; // use for reversing the data
         final String propertyId = property['_id'];
         final String userId = property['userId'];
 
-        return Column(
-          children: [
-            Property(
-              //onFavoriteTap: (property),
-              imagePath: property['thumbimage'],
-              flatName: property['assetname'],
-              address: property['location'],
-              bedroom: property['bedrooms'].toString(),
-              livingRoom: property['commonHall'].toString(),
-              bathroom: property['bathroom'].toString(),
-              price: property['price'].toString(),
-              onTap: () {
-                onPropertySelected(userId, propertyId);
-              },
-              height: 330,
-              width: MediaQuery.of(context).size.width * 0.6,
-            ),
-            const SizedBox(width: 50),
-          ],
+        return Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: 8.0), // Add horizontal space between items
+          child: Column(
+            children: [
+              Property(
+                imagePath: property['thumbimage'],
+                flatName: property['assetname'],
+                address: property['location'],
+                bedroom: property['bedrooms'].toString(),
+                livingRoom: property['commonHall'].toString(),
+                bathroom: property['bathroom'].toString(),
+                price: property['price'].toString(),
+                onTap: () {
+                  onPropertySelected(userId, propertyId);
+                },
+                height: 330,
+                width: MediaQuery.of(context).size.width * 0.6,
+              ),
+            ],
+          ),
         );
       },
     );

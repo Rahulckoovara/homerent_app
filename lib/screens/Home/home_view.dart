@@ -9,6 +9,7 @@ import 'package:tappal_app/screens/Home/seeAll/seeall_view.dart';
 import 'package:tappal_app/screens/filter/filter_view.dart';
 import 'package:tappal_app/widgets/Selectable_button.dart';
 import 'package:tappal_app/widgets/filter_button.dart';
+import 'package:tappal_app/widgets/progressbar.dart';
 // import 'package:carousel_slider/carousel_slider.dart ' as carousel;
 
 class HomePage extends StatefulWidget {
@@ -35,105 +36,112 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         body: Padding(
           padding: EdgeInsets.all(CustomDimens.commonPadding),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start, // Align to start
-            children: [
-              // Title Text
-              RichText(
-                text: const TextSpan(
-                  children: [
-                    TextSpan(
-                      text: 'Find Your dream ',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          fontFamily: CustomFont.fontBold,
-                          color: Colors.black),
-                    ),
-                    TextSpan(
-                      text: '\nproperty',
-                      style: TextStyle(
-                          fontSize: 30,
-                          fontFamily: CustomFont.fontBold,
-                          color: Colors.black),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                  height: 20), // Add spacing between text and filter buttons
-              // Filter Buttons
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.grey[300],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child: Obx(() {
+            return logic.isLoading.value
+                ? const Center(child: Progressbar())
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment:
+                        CrossAxisAlignment.start, // Align to start
                     children: [
-                      for (int i = 0; i < buttonValues.length; i++)
-                        SelectableButton(
-                          onPressed: () {
-                            setState(() {
-                              _selectedIndex = i;
-                            });
-                          },
-                          text: buttonValues[i],
-                          isSelected: _selectedIndex == i,
+                      // Title Text
+                      RichText(
+                        text: const TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Find Your dream ',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30,
+                                  fontFamily: CustomFont.fontBold,
+                                  color: Colors.black),
+                            ),
+                            TextSpan(
+                              text: '\nproperty',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  fontFamily: CustomFont.fontBold,
+                                  color: Colors.black),
+                            ),
+                          ],
                         ),
-                      FilterButton(
-                        onPressed: () {
-                          Get.to(const FilterPage());
-                        },
-                        icon: Icons.filter_alt_outlined,
+                      ),
+                      const SizedBox(
+                          height:
+                              20), // Add spacing between text and filter buttons
+                      // Filter Buttons
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.grey[300],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              for (int i = 0; i < buttonValues.length; i++)
+                                SelectableButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      _selectedIndex = i;
+                                    });
+                                  },
+                                  text: buttonValues[i],
+                                  isSelected: _selectedIndex == i,
+                                ),
+                              FilterButton(
+                                onPressed: () {
+                                  Get.to(const FilterPage());
+                                },
+                                icon: Icons.filter_alt_outlined,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                          height: 20), // Add spacing between filter and title
+                      // Properties Title
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Properties',
+                            style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: CustomFont.fontSemiBold),
+                          ),
+                          TextButton(
+                              onPressed: () {
+                                Get.to(const SeeAllPage());
+                              }
+                              // Get.to(const FilterPage());
+                              ,
+                              child: const Text('See All',
+                                  style: TextStyle(
+                                      fontFamily: CustomFont.fontMedium,
+                                      fontSize: 15,
+                                      color: CustomColors.primarySubText))),
+                        ],
+                      ),
+                      const SizedBox(
+                          height:
+                              10), // Add spacing between title and property list
+                      Flexible(
+                        fit: FlexFit
+                            .loose, // Allows the list to grow as needed without forcing expansion
+                        child: PropertyList(
+                          logic.propertyData,
+                          (String userId, String propertyId) {
+                            logic.gotoHomeDetails(userId, propertyId);
+                          },
+                        ),
                       ),
                     ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                  height: 20), // Add spacing between filter and title
-              // Properties Title
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Properties',
-                    style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: CustomFont.fontSemiBold),
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        Get.to(SeeAllPage());
-                      }
-                      // Get.to(const FilterPage());
-                      ,
-                      child: Text('See All',
-                          style: TextStyle(
-                              fontFamily: CustomFont.fontMedium,
-                              fontSize: 15,
-                              color: CustomColors.primarySubText))),
-                ],
-              ),
-              const SizedBox(
-                  height: 10), // Add spacing between title and property list
-              Flexible(
-                fit: FlexFit
-                    .loose, // Allows the list to grow as needed without forcing expansion
-                child: PropertyList(
-                  logic.propertyData,
-                  (String userId, String propertyId) {
-                    logic.gotoHomeDetails(userId, propertyId);
-                  },
-                ),
-              ),
-            ],
-          ),
+                  );
+          }),
         ),
       ),
     );

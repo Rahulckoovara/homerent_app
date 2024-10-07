@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:get/get.dart';
 import 'package:tappal_app/common/storage_utils.dart';
 import 'package:tappal_app/config/customConstants.dart';
+import 'package:tappal_app/screens/login/login/login_view.dart';
 import 'package:tappal_app/screens/loginLoader/login_loader_view.dart';
 import 'package:tappal_app/services/api_service.dart';
 
@@ -21,7 +22,7 @@ class ProfileLogic extends GetxController {
   }
 
   Future<void> logout() async {
-    Get.offAll(const LoginLoaderPage());
+    Get.offAll(const LoginPage());
     storageutils.clear();
   }
 

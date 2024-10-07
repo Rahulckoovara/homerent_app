@@ -77,7 +77,6 @@ class RegisterLogic extends GetxController {
       userIdError.value = 'Provide a valid email address';
       return false;
     }
-
     if (name.value.isEmpty) {
       print("empyttttttttttttt user");
       nameError.value = 'User Name is Empty';
@@ -112,12 +111,13 @@ class RegisterLogic extends GetxController {
       var inputData = {
         "username": userId.value.trim(),
         "name": name.value.trim(),
+        "contactNumber": 1234567890,
         "isowner": isOwner.value,
         "password": password.value,
         "image": base64Images.isNotEmpty ? base64Images.last : "",
       };
 
-      print("Type of 'image' in inputData: ${inputData['image'].runtimeType}");
+      //print("Type of 'image' in inputData: ${inputData['image'].runtimeType}");
       print("inputtt-----$inputData");
 
       // Convert the input data to a JSON string

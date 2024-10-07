@@ -11,6 +11,7 @@ class OwnerHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final logic = Get.put(OwnerHomeScreen());
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(

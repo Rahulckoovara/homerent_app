@@ -276,16 +276,34 @@ class HomeDetails extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Container(
-                              width: double.infinity,
-                              child: PrimaryButton(() {}, "Book Now")),
+                          child: Obx(
+                             () {
+                              return ShimmerWidget(
+                                 height: 30,
+                                                    isLoading: logic.isLoading.value,
+                                child: Container(
+                                    width: double.infinity,
+                                    child: Obx(
+                                       () {
+                                        return PrimaryButton(
+                                          () {
+                                            logic.submit();
+                                          },
+                                          "Contact Now",
+                                          status: logic.status.value,
+                                        );
+                                      }
+                                    )),
+                              );
+                            }
+                          ),
                         ),
                         const SizedBox(
                           width: 5,
                         ),
-                        Expanded(
-                            child: Container(
-                                child: PrimaryButton(() {}, "Call Now"))),
+                        // Expanded(
+                        //     child: Container(
+                        //         child: PrimaryButton(() {}, "Call Now"))),
                       ],
                     ),
                   )

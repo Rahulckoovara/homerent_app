@@ -21,22 +21,25 @@ class HomeDetailsLogic extends GetxController {
   RxString housePrice = RxString('');
   RxString houseDescription = RxString("");
   Rx<Uint8List?> imageBytes = Rx<Uint8List?>(null);
+  RxString status = RxString('');
 
   //RxString houseContact = RxString('');
 
   @override
-  void onInit() {
+  void onInit() async {
     print("initialisesssssssssss");
     super.onInit();
     if (argumentData != null) {
       userId = argumentData[0]['userId'];
       propertyId = argumentData[1]['propertyId'];
       print("keyids::$userId, $propertyId");
-      fetchData();
+      // await fetchAllData();
+      await fetchData();
+      await fetchNotifyStatus();
     }
   }
 
-  void fetchData() async {
+  Future<void> fetchData() async {
     //String? userid = await storageutils.read(CustomConstants.userId);
     //print("userid:$userid");
 
@@ -46,9 +49,9 @@ class HomeDetailsLogic extends GetxController {
           isLoading.value = loader;
         });
     if (response != null) {
-      print("home respo here&&&&&$response");
+      //   print("home respo here&&&&&$response");
       Map<String, dynamic> result = response;
-      print(result);
+      //  print(result);
       if (result.containsKey("asset")) {
         houseName.value =
             result['asset'] != null && result['asset']['assetname'] != null
@@ -84,9 +87,44 @@ class HomeDetailsLogic extends GetxController {
         // ? result['asset']['contact']
         // : '';
       }
-
-      print("this is reslt::$result");
+      // print("this is reslt::$result");
       //if(result.containsKey("assets")) {}
+    }
+  }
+
+  void submit() async {
+    print("the contact is ");
+    String? buyerId = await storageutils.read(CustomConstants.userId);
+    var inputData = {
+      "assetId": propertyId,
+      "ownerId": userId,
+      "buyerId": buyerId
+    };
+    final dynamic response = await apiService.postData(
+        inputData: inputData,
+        path: "${CustomPath.baseUrl}create-notification",
+        setLoadingState: (bool loader) {
+          isLoading.value = loader;
+        });
+    if (response != null) {
+      Map<String, dynamic> result = response;
+      status.value = result['notification']['status'];
+
+      fetchData();
+    }
+  }
+
+  Future<void> fetchNotifyStatus() async {
+    String? buyerId = await storageutils.read(CustomConstants.userId);
+    final dynamic response = await apiService.fetchDataWithoutQuery(
+        path:
+            "${CustomPath.baseUrl}get-notification-status/$propertyId/$buyerId",
+        setLoadingState: (bool loader) {
+          isLoading.value = loader;
+        });
+    if (response != null) {
+      Map<String, dynamic> result = response;
+      status.value = result['status'];
     }
   }
 }

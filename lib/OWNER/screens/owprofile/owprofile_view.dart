@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tappal_app/OWNER/screens/Messages/message._logic.dart';
 import 'package:tappal_app/OWNER/screens/owprofile/owprofile_logic.dart';
 import 'package:tappal_app/config/custom_colors.dart';
 import 'package:tappal_app/widgets/progressbar.dart';
@@ -13,7 +14,7 @@ class OwnerProfilePage extends StatelessWidget {
     return Scaffold(
         body: Obx(
       () => logic.isLoading.value
-          ? Center(child: Progressbar())
+          ? const Center(child: Progressbar())
           : Column(
               children: [
                 // Curved Header with Profile Picture
@@ -89,6 +90,7 @@ class OwnerProfilePage extends StatelessWidget {
                         icon: Icons.message,
                         label: 'Messages',
                         onTap: () {
+                          Get.to(() => MessagePage());
                           // Handle tap
                         },
                       ),

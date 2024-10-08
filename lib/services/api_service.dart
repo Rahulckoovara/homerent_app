@@ -27,7 +27,7 @@ class APIService {
         headers: getApiHeaders(tokenNullable ?? ""),
         body: jsonEncode(inputData),
       );
-      //  print("wwwwwwwwwwwwwwwww$response");
+      print("post call responsee$response");
       if (response.statusCode == 200) {
         print(response.statusCode);
         return jsonDecode(response.body);

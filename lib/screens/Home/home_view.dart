@@ -10,7 +10,6 @@ import 'package:tappal_app/screens/filter/filter_view.dart';
 import 'package:tappal_app/widgets/Selectable_button.dart';
 import 'package:tappal_app/widgets/filter_button.dart';
 import 'package:tappal_app/widgets/progressbar.dart';
-// import 'package:carousel_slider/carousel_slider.dart ' as carousel;
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -66,6 +65,8 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
+                      // Carousel Slider
+
                       const SizedBox(
                           height:
                               20), // Add spacing between text and filter buttons

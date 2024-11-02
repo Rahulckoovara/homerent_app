@@ -36,7 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.6
   get: ^4.6.6
   lottie: ^3.1.0
-  carousel_slider: ^4.2.1
   panorama_viewer: ^1.0.5
   image_picker: ^1.1.1
   flutter_secure_storage: ^9.0.0
